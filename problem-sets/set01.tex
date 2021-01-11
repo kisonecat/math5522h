@@ -3,10 +3,6 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
@@ -19,30 +15,126 @@ Le plus court chemin entre deux v\'erit\'es dans le domaine r\'eel passe par le 
 \section{Terminology}
 
 \begin{problem}
-  Define $\C$.  Can you invent different definitions?
+  Define $\C$.  (How many ``different'' definitions do you know?)
+\end{problem}
+
+\begin{problem}
+  Define $\conj{z}$ and $\abs{z}$ for $z \in \C$.
+\end{problem}
+
+\begin{problem}
+  For complex numbers $z, w \in \C$, what do we mean by $z^w$ ?
 \end{problem}
 
 \section{Numericals}
 
+\begin{problem}
+  Apply \textbf{partial fractions} to write $\displaystyle\frac{1}{1-z^4}$ as a sum of terms of the form $\displaystyle\frac{A}{Bz + C}$.
+\end{problem}
+
+\begin{problem}
+  Find $a, b, z \in \C$ so that $\left(z^a\right)^b \neq z^{\left(ab\right)}$.
+\end{problem}
+
+\begin{problem}
+  We will often see \textbf{roots of unity}.  To practice computing with such objects, let
+  \[
+    \zeta := \cos \left( \frac{2\pi}{7} \right) + i \, \sin \left( \frac{2\pi}{7} \right) \mbox{ and }
+    r := \zeta + \zeta^2 - \zeta^3 + \zeta^4 - \zeta^5 - \zeta^6.
+  \]
+  Find the integer $r^2$.  (This surprise is a \textbf{Gauss sum}.)
+\end{problem}
+
+\begin{problem}
+  For which $z \in \mathbb{C}$ is it the case that $\log \left( e^z \right) = z$?  \\ (What do we mean when we write $\log$ here?)
+\end{problem}
+
+\end{problem}
+
 \section{Exploration}
 
-cross ratio
+\begin{problem}
+  Let's review some linear algebra.  Define $J(x,y) = (y,-x)$ so $J$
+  is counter-clockwise rotation by $90^\circ$, and suppose
+  $T : \R^2 \to \R^2$ is a linear transformation with the property
+  that $T \circ J = J \circ T$.  Can you relate $T$ to the complex
+  numbers?
+\end{problem}
 
-\section{Prove or Disprove and Salvage if Possible}
+\begin{problem}\label{mobius-transformations}Here is another connection to linear algebra.  Suppose we have complex-valued functions
+  \[
+    f(z) = \frac{az + b}{cz + d} \mbox{ and }
+    F(z) = \frac{Az + B}{Cz + D}.
+  \]
+  Such functions are \textbf{M\"obius transformations}.  Relate the
+  function $f \circ F$ to a product of certain matrices.
+\end{problem}
+
+\begin{problem}\label{abels-theorem}Let's review some real analysis.  Consider a sequence $(a_n)$ of real number so that $\sum_{n=0}^\infty a_n$ converges to $L$.  Does the one-sided limit
+  \[
+    \lim_{x \to 1^{-}} \sum_{n=0}^\infty a_n x^n
+  \]
+  also equal $L$?  See \textbf{Abel's theorem}.
+\end{problem}
+
+\begin{problem}
+  For an open subset $U \subset \R^2$, a \textbf{harmonic function} $f : U \to \R$ is a twice continuously differential function satisfying the Laplace's equation
+  \[
+    \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = 0.
+  \]
+  Suppose $f(x,y) = Ax^3 + Bx^2 y + C xy^2 + D y^3$ is harmonic for constants $A, B, C, D \in \R$.  Relate $f$ to $z \cdot (x + iy)^3$.
+\end{problem}
+
+\section{Prove or Disprove and Salvage if Possible (PODASIP)}
+
+\textit{You may not have met these PODASIP-style problems before.
+  What follows are statements which may be ``true'' or ``false.''  If
+  the statement is true, then you should provide a proof.  If the
+  statement is false, find a counterexample and fix the statement and
+  then supply a proof for your repaired statement.  For example,
+  \ref{blaschke-factors} suffers from the domain of $f$ not being
+  specified, so you can ``salvage'' \ref{blaschke-factors} by
+  carefully describing the domain.}
+
+\begin{problem}\label{blaschke-factors}
+  Suppose $w \in \C$ and $\abs{w} < 1$.  Define a function by the rule
+  \[
+    f(z) = \frac{w - z}{1 - \conj{w}z}.
+  \]
+  If $\abs{z} < 1$, then $\abs{f(z)} < 1$.  (These are \textbf{Blaschke factors}.)
+\end{problem}
+
+\begin{problem} % you may assume R is complete.
+  The field $\mathbb{C}$ is complete.
+\end{problem}
 
 \begin{problem}
  For all $z, w \in \C$ it is the case that $\sqrt{z} \sqrt{w} = \sqrt{zw}$.
 \end{problem}
 
-\begin{problem}
-  For all $z \in \C$ it is the case that
+\begin{problem} % missing non-empty, compact
+  Suppose $K_1 \supset K_2 \supset \cdots$ be nested subsets of $\C$ so that $\diam K_n < 1/2^n$.  Then
   \[
-    \log \left( 1 - z^2 \right) = \left( \log \left( 1 - z \right) \right) \cdot \left( \log \left( 1 + z \right) \right.
+    \bigcap_{n=1}^\infty K_n
   \]
+  is non-empty and consists of a single point.
 \end{problem}
 
 \begin{problem}
  For all $a, b, z \in \C$ it is the case that $z^a \, z^b = z^{a+b}$.
+\end{problem}
+
+\begin{problem}\label{cross-ratio}
+  Define the \textbf{cross-ratio} of distinct complex numbers $z_1,z_2,z_3,z_4 \in \C$ by
+\[
+\left(z_1,z_2;z_3,z_4\right):=\frac {\left(z_3-z_1\right)\,\left(z_4-z_2\right)}{\left(z_3-z_2\right)\,\left(z_4-z_1\right)}.
+ \]
+ If $f$ is a M\"obius transformation (cf.~\ref{mobius-transformations}), then
+ \[
+   \left(z_1,z_2;z_3,z_4\right) =
+   \left(f(z_1),f(z_2);f(z_3),f(z_4)\right).
+\]
+ 
 \end{problem}
 
 \end{document}
