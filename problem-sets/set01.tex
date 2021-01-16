@@ -51,7 +51,7 @@ Le plus court chemin entre deux v\'erit\'es dans le domaine r\'eel passe par le 
 
 \section{Exploration}
 
-\begin{problem}
+\begin{problem}\label{tj-versus-jt}
   Let's review some linear algebra.  Define $J(x,y) = (y,-x)$ so $J$
   is counter-clockwise rotation by $90^\circ$, and suppose
   $T : \R^2 \to \R^2$ is a linear transformation with the property
@@ -68,14 +68,16 @@ Le plus court chemin entre deux v\'erit\'es dans le domaine r\'eel passe par le 
   function $f \circ F$ to a product of certain matrices.
 \end{problem}
 
-\begin{problem}\label{abels-theorem}Let's review some real analysis.  Consider a sequence $(a_n)$ of real number so that $\sum_{n=0}^\infty a_n$ converges to $L$.  Does the one-sided limit
+\begin{problem}\label{abels-theorem}Let's review some real analysis.
+  Consider a sequence $(a_n)$ of real numbers so that
+  $\sum_{n=0}^\infty a_n$ converges to $L$.  Does the one-sided limit
   \[
     \lim_{x \to 1^{-}} \sum_{n=0}^\infty a_n x^n
   \]
   also equal $L$?  See \textbf{Abel's theorem}.
 \end{problem}
 
-\begin{problem}
+\begin{problem}\label{harmonic-function}
   For an open subset $U \subset \R^2$, a \textbf{harmonic function} $f : U \to \R$ is a twice continuously differential function satisfying the Laplace's equation
   \[
     \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = 0.

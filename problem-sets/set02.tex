@@ -3,24 +3,144 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+I don't think derivatives are evil, per se --- I think they are dangerous.
+\byline{Warren Buffett}
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  What is a half-space?  Define convex hull.
+\end{problem}
+
+\begin{problem}
+  Define the Wirtinger partial derivatives $\displaystyle\frac{\partial}{\partial z}$ and $\displaystyle\frac{\partial}{\partial \conj{z}}$.
+\end{problem}
+
+\begin{problem}
+  What are the Cauchy-Riemann equations?
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}\label{cauchy-riemann-polar}What are the Cauchy-Riemann equations\ldots in polar coordinates?
+\end{problem}
+
+\begin{problem}
+  For a natural number $n$ define $f : \mathbb{C} \to \mathbb{C}$ by
+  \[
+    f(r \cos \theta + i \, r\sin \theta) = r^n \cos \left( r\theta \right) + i \, r^n \sin \left( r \theta \right).
+  \]
+  Use \ref{cauchy-riemann-polar} to verify that $f$ satisfies the
+  Cauchy-Riemann equations.
+\end{problem}
+
+\begin{problem}
+  On a certain domain, define $f(z) = \log \abs{z} + i \cdot \Arg z$
+  and verify that $f$ satisfies the Cauchy-Riemann equations.
+\end{problem}
+
+\begin{problem}
+  Compute $\displaystyle\frac{\partial}{\partial z} \left( z \conj{z} \right)$.
+\end{problem}
+
+\begin{problem}\label{harmonic-conjugate}Let $u(x,y) = e^y \sin x$.  Find $v(x,y)$ so that $u$ and $v$
+  satisfy the Cauchy-Riemann equations.  Such a function $v$ is a
+  \textbf{harmonic conjugate} of $u$.
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}\label{cayley-transform}Relate the upper half-plane
+  $H = \{ z \in \mathbb{C} : \Imag z > 0 \}$ and the open disk
+  $D = \{ z \in \mathbb{C} : \abs{z} < 1 \}$ by finding $a,b,c,d \in \C$ so that the M\"obius transformation
+  \[f(z) = \frac{az + b}{cz + d}\] yields a bijection $f : H \to D$.
+\end{problem}
+
+\begin{problem}\label{harmonic-necessary}Given $u : \mathbb{R}^2 \to \mathbb{R}^2$, is it always possible to
+  find a function $v : \mathbb{R}^2 \to \mathbb{R}^2$ so that $u$ and
+  $v$ satisfy the Cauchy-Riemann equations?
+\end{problem}
+
+\begin{problem}
+  For $p \in \C[x]$, show that the convex hull of the zeroes of $p$
+  contains the zeroes of $p'$.  This is the \textbf{Gauss-Lucas
+    theorem}.
+\end{problem}
+
+\begin{problem}
+  Suppose the smooth function $f : \C \to \C$ satisfies the
+  Cauchy-Riemann equations.  Does $f'$ also satisfy the Cauchy-Riemann
+  equations?
+\end{problem}
+
+\begin{problem}
+  Suppose $f : \R^2 \to \R^2$ satisfies the Cauchy-Riemann equations,
+  and consider curves $\gamma_1, \gamma_2 : (-1,1) \to \R^2$ passing
+  through the origin so that $\gamma_1(0) = \gamma_2(0) = (0,0)$.
+  Relate the angle between the curves $\gamma_1$ and $\gamma_2$ to the
+  angle between the curves $f \circ \gamma_1$ and $f \circ \gamma_2$.
+  (This is related to \ref{tj-versus-jt}.)
+\end{problem}
+
+\begin{problem}
+  Suppose $f : \C \to \C$ is smooth and holomorphic.  Show that the
+  real part of $f$ is harmonic (cf.~\ref{harmonic-function}).
+\end{problem}
+
+\begin{problem}
+  Let's redo \ref{abels-theorem} in the context of complex analysis.
+  Consider a sequence $(a_n)$ of complex numbers so that
+  $\sum_{n=0}^\infty a_n$ converges to $L$.  Then
+  $\lim_{z \to 1^{-}} \sum_{n=0}^\infty a_n z^n = L$ provided
+  $z \to 1$ in a \textbf{Stolz sector}, i.e., suppose there is some
+  $K$ so that $|1-z| \leq K(1-|z|)$.
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+As always with PODASIPs, many of statements below are incorrect.  For
+full credit, you must not only salvage these false statements, but
+also explain why the statement is false (e.g., perhaps by exhibiting a
+counterexample).
+
+\begin{problem}
+  Suppose $f : \R^2 \to \R^2$ and $g : \R^2 \to \R^2$ are smooth (but
+  not necessarily holomorphic when regarded as functions from $\C$ to
+  $\C$).  Then by the chain rule,
+  \[
+    \frac{\partial}{\partial z} \left( f \circ g \right) =
+    \frac{\partial f}{\partial z} \frac{\partial g}{\partial z} + \frac{\partial f}{\partial \conj{z}} \frac{\partial g}{\partial \conj{z}}.
+  \]
+  and similarly
+  \[
+    \frac{\partial}{\partial \conj{z}} \left( f \circ g \right) =
+    \frac{\partial f}{\partial \conj{z}} \frac{\partial g}{\partial \conj{z}} + \frac{\partial f}{\partial z} \frac{\partial g}{\partial z}.
+  \]
+\end{problem}
+
+\begin{problem}\label{schwarz-reflection-principle}If $f : \C \to \C$ is holomorphic, then $z \mapsto \overline{f(\conj z)}$ is holomorphic.
+\end{problem}
+
+\begin{problem}\label{cauchy-riemann-alone-not-sufficient}Suppose $u, v : \mathbb{R}^2 \to \mathbb{R}$ satisfy
+  \[
+    \frac{\partial u}{\partial x}(0,0)=\frac{\partial v}{\partial y}(0,0)
+    \mbox{ and }
+    \frac{\partial u}{\partial y}(0,0)=-\frac{\partial v}{\partial x}(0,0).
+  \]
+  Then $f : \C \to \C$ given by $f(x+iy) = u(x,y) + i \, v(x,y)$ is holomorphic at $0$.
+\end{problem}
+
+\begin{problem}\label{open-mapping-theorem-preview}There is a nonconstant holomorphic function with constant absolute value.
+\end{problem}
+
+\begin{problem}\label{schwarzian-derivative}For $f : \mathbb{C} \to \mathbb{C}$, the \textbf{Schwarzian derivative} of $f$ is
+  \[ (Sf)(z)=\left({\frac{f''(z)}{f'(z)}}\right)'-{\frac12}\left(\frac{f''(z)}{f'(z)}\right)^2={\frac {f'''(z)}{f'(z)}}-{\frac32}\left(\frac{f''(z)}{f'(z)}\right)^2. \]
+  If $f$ is a M\"obius transformation, then $(Sf)(z) = 0$.
+\end{problem}
 
 \end{document}
