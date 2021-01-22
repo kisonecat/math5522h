@@ -1,0 +1,327 @@
+\documentclass{homework}
+\course{Math 5522H}
+\author{Alex Li}
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\begin{inspiration}
+Le plus court chemin entre deux v\'erit\'es dans le domaine r\'eel passe par le domaine complexe.
+%The shortest path between two truths in the real domain passes through the complex domain.
+\byline{Jacques Hadamard}
+\end{inspiration}
+
+\section{Terminology}
+
+\begin{problem}
+  Define $\C$.  (How many ``different'' definitions do you know?)
+\end{problem}\\
+\begin{solution}
+The complex numbers $\C = \{S, +, *\}$ are a ring (in fact a field) defined as follows:
+\begin{align*}
+S &= \{(a, b): a\in \mathbb{R}, b\in \mathbb{R}\}\\
++ &: (x_1, x_2) \in S, (y_1, y_2) \in S \mapsto (x_1 + y_1, x_2 + y_2)\\
+* &: (x_1, x_2) \in S, (y_1, y_2) \in S \mapsto (x_1y_1 - x_2y_2, x_1y_2 + x_2    y_1)
+\end{align*}
+We use the shorthand $a, a\in\R$ to denote $(a, 0)$ and $ai, a\in \R$ to denote $(0, a)$.
+\\
+A second definition:
+$$\C = \R[x]/x^2 + 1$$
+\\
+\end{solution}
+\begin{problem}
+  Define $\conj{z}$ and $\abs{z}$ for $z \in \C$.
+\end{problem}
+\begin{solution}
+For $a+bi=z$, $\conj{z}=a-bi$ and $\abs{z}=\sqrt{z\conj{z}}$.
+\end{solution}
+
+\begin{problem}
+For complex numbers $z, w \in \C$, what do we mean by $z^w$ ?
+\end{problem}
+\begin{solution}
+$e^x$ for any complex number $x$ is defined by the power series of the $\exp$ function evaluated at $x$.
+
+$z^w$ is defined to be $e^{w \Log z}$, where $\Log z = a+bi$ is the unique complex number with $b\in(-\pi, \pi]$ such that $a = \log|z|$ and $b$ is the counterclockwise angle $z$ makes with $(1,0)$ in radians.
+\end{solution}
+
+\section{Numericals}
+\begin{problem}
+Apply \textbf{partial fractions} to write $\displaystyle\frac{1}{1-z^4}$ as a sum of terms of the form $\displaystyle\frac{A}{Bz + C}$.
+\end{problem}
+\begin{solution}
+First note that we can factor $(1-z^4)$ as $(1-z)(1+z)(1-iz)(1+iz)$. Now let's find coefficients so that 
+$$\frac{1}{1-z^4} = \frac{A_1}{1-z} + \frac{A_2}{1+z} + \frac{A_3}{1-iz} + \frac{A_4}{1+iz}$$
+
+Multiplying throughout by $1-z^4$,
+\begin{align*}
+1 &= A_1(1+z)(1+z^2) + A_2(1-z)(1+z^2) + A_3(1-z^2)(1+iz) + A_4(1-iz)(1-z^2)\\
+1 &= A_1(1+z+z^2+z^3) + A_2(1-z+z^2-z^3) \\&+A_3(1+iz-z^2-iz^3) + A_4(1-iz-z^2+iz^3)\\
+\end{align*}
+Equating coefficients,
+\begin{align}
+1 &= A_1+A_2+A_3+A_4\\
+0z &= (A_1 - A_2 + iA_3 - iA_4)z\\
+0z^2 &= (A_1 + A_2 - A_3 - A_4)z^2\\
+0z^3 &= (A_1 - A_2 - iA_3 + iA_4)z^3
+\end{align}
+Giving us a linear system of equations. We get that
+\begin{align}
+\begin{pmatrix}1&1&1&1\\1&-1&i&-i\\1&1&-1&-1\\1&-1&-i&i\\\end{pmatrix}^{-1}
+\begin{pmatrix}1\\0\\0\\0\end{pmatrix} = \begin{pmatrix}
+A_1\\A_2\\A_3\\A_4\end{pmatrix}
+\end{align}
+And solving, 
+$$\frac{1}{1-z^4} = \frac{\frac{1}{4}}{1-z} + \frac{\frac{1}{4}}{1+z} + \frac{\frac{1}{4}}{1-iz} + \frac{\frac{1}{4}}{1+iz}$$
+\end{solution}
+\begin{problem}
+  Find $a, b, z \in \C$ so that $\left(z^a\right)^b \neq z^{\left(ab\right)}$.
+\end{problem}
+\begin{solution}
+Let $z=e, a=2\pi i, b=i$. Then 
+\[
+z^{ab} = e^{-2\pi},
+\]
+\[(z^{a})^b = (e^{2\pi i})^i = e^{i\Log{(e^{2\pi i})}} = e^{i{0}} = 1\]
+And clearly, $1\neq e^{-2\pi}$.
+\end{solution}
+\begin{problem}
+  We will often see \textbf{roots of unity}.  To practice computing with such objects, let
+  \[
+    \zeta := \cos \left( \frac{2\pi}{7} \right) + i \, \sin \left( \frac{2\pi}{7} \right) \mbox{ and }
+    r := \zeta + \zeta^2 - \zeta^3 + \zeta^4 - \zeta^5 - \zeta^6.
+  \]
+  Find the integer $r^2$.  (This surprise is a \textbf{Gauss sum}.)
+\end{problem}
+\begin{solution}
+\begin{align*}
+r^2 &= (\zeta + \zeta^2 - \zeta^3 + \zeta^4 - \zeta^5 - \zeta^6)(\zeta + \zeta^2 - \zeta^3 + \zeta^4 - \zeta^5 - \zeta^6)\\
+&= \zeta^2 + 2\zeta^3 - \zeta^4 + \zeta^6 - 6\zeta^7 + \zeta^8 - \zeta^{10} + 2\zeta^{11} + \zeta^{12}\\
+&= \zeta + \zeta^2 + \zeta^3 + \zeta^4 + \zeta^5 + \zeta^6 - 6\\
+&= -7
+\end{align*}
+\end{solution}
+\begin{problem}
+For which $z \in \mathbb{C}$ is it the case that $\log \left( e^z \right) = z$?  \\ (What do we mean when we write $\log$ here?)
+\end{problem}
+\begin{solution}
+If $\log z$ has only one value, then it's implied that it's the prinipal log - the value for which $\log z$ is the inverse of $e^z$ and $\log z$ has an imaginary part in $(-\pi, \pi]$. Then by defintion, any value $z = a+bi, b\in (-\pi, \pi]$ satisfies the equation. Conversely, if $b$ is not in this interval, then $\log(e^z)$ will have imaginary part in the interval $(-\pi, \pi)$, so the equation will not be satisfied.
+\end{solution}
+\section{Exploration}
+
+\begin{problem}
+  Let's review some linear algebra.  Define $J(x,y) = (y,-x)$ so $J$
+  is counter-clockwise rotation by $90^\circ$, and suppose
+  $T : \R^2 \to \R^2$ is a linear transformation with the property
+  that $T \circ J = J \circ T$.  Can you relate $T$ to the complex
+  numbers?
+\end{problem}
+\begin{solution}
+$J$ sounds like multiplication by $i$ in that multiplying $(a,b)=a+bi$ by $i$ gives the complex number $J\begin{pmatrix}a\\b\end{pmatrix}$. All complex numbers commute with $i$, so letting $T'$ be set of the linear transformations obtained from multiplying by any complex number, we must have $T'\subset T$. Any element in $T'$ is a linear combination of multiplying by the identity matrix (adding 1) and multiplying by $J$ (adding i), so it's a 2 dimensional vector space.
+
+We might hope that the opposite is also true, $T\subset T'$. Let's check.
+
+\begin{align*}
+T\circ J = J \circ T& \implies \begin{pmatrix}c&d\\e&f\end{pmatrix} \begin{pmatrix}0&1\\-1&0\end{pmatrix} = \begin{pmatrix}0&1\\-1&0\end{pmatrix}  \begin{pmatrix}c&d\\e&f\end{pmatrix}\\
+& \implies \begin{pmatrix}-d&c\\-f&e\end{pmatrix} = \begin{pmatrix}e&f\\-c&-d\end{pmatrix}\\
+\end{align*}
+So we must have $d=-e$ and $c=f$, and thus $T$ is a 2 dimensional subspace of $2\times 2$ matricies. As both $T$ and $T'$ are 2 dimensional vector spaces, they are the same.
+\end{solution}
+
+\begin{problem}\label{mobius-transformations}Here is another connection to linear algebra.  Suppose we have complex-valued functions
+  \[
+    f(z) = \frac{az + b}{cz + d} \mbox{ and }
+    F(z) = \frac{Az + B}{Cz + D}.
+  \]
+  Such functions are \textbf{M\"obius transformations}.  Relate the
+  function $f \circ F$ to a product of certain matrices.
+\end{problem}
+\begin{solution}
+\begin{align*}
+f \circ F &= \frac{a(\frac{Az + B}{Cz + D}) + b}{c(\frac{Az + B}{Cz + D}) + d}\\
+&= \frac{aAz + aB + bCz + bD}{cAz+cB+dCz+Dd}\\
+&= \frac{(aA + bC)z + (aB + bD)}{(cA+dC)z+(cB+Dd)}
+\end{align*}
+Associate to a symbolic expression of the from $\frac{wz + x}{yz+z}$ the matrix $\begin{pmatrix}w&x\\y&z\end{pmatrix}.$
+Then the associated matrix of $f$ times the associated matrix of $F$ is the matrix associated with $f\circ F$.
+\end{solution}
+\begin{problem}\label{abels-theorem}Let's review some real analysis.  Consider a sequence $(a_n)$ of real number so that $\sum_{n=0}^\infty a_n$ converges to $L$.  Does the one-sided limit
+  \[
+    L' = \lim_{x \to 1^{-}} \sum_{n=0}^\infty a_n x^n
+  \]
+  also equal $L$?  See \textbf{Abel's theorem}.
+\end{problem}
+\begin{solution}
+% Got stuck and took this solution from 
+% https://sites.math.washington.edu/~morrow/335_16/AbelLaplace.pdf
+First let's show the limit exists. When $x > 0$, since $\sum a_n$ converges to $L$, $\forall \epsilon>0 \exists N s.t. \forall n > N, |a_n| < \epsilon.$ Then $|\sum_{n=N}^\infty a_nx^n| < \sum_{n=N}^\infty \epsilon|x^n| < \epsilon\frac{1}{1-x}$, which converges for $x\in (0, 1].$
+
+Define $s_n = \sum_{n=0}^n a_n$. We consider the sum $\sum_{n=0}^\infty s_nx^n$, noting that this converges for fixed $x$ by comparison to a geometric series since $s_n$ approaches the constant $L$.
+\begin{align*}
+L' &= \sum_{i=0}^\infty (s_n-s_{n-1})x^n\\
+&=  \sum_{i=0}^\infty s_nx^n - x\sum_{i=0}^\infty s_{n}x^n
+= (1-x)\sum_{i=0}^\infty s_nx^n\\
+&= (1-x)\sum_{i=0}^\infty s_nx^n + (L - L(1-x)\sum_{i=0}^\infty x^n) &\color{red}\text{note: } (1-x)\sum_{i=0}^\infty x^n=1\\
+&= (1-x)\sum_{i=0}^\infty (s_n - L)x^n + L
+\end{align*}
+
+Since $s_n$ converges to $L$,  $\exists N>n$ such that $|s_n - L| < \epsilon/2$.
+\begin{align*}
+|L' - L| &= (1 - x)\sum_0^\infty (s_n - L)x^n\\
+&= (1 - x)\sum_0^N (s_n - L)x^n + (1 - x)\sum_{N+1}^\infty (s_n - L)x^n \\
+&\leq (1 - x)\sum_0^N (s_n - L)x^n + (1 - x)\sum_{N+1}^\infty x^n \epsilon/2\\
+&\leq (1 - x)\sum_0^N (s_n - L)x^n + \epsilon/2
+\end{align*}
+
+By choosing $x$ to be very close to 1, we can make the first $N$ terms less than $\epsilon/2$, since it's a finite polynomial with a root at 0, and so $|L' - L| \leq \epsilon$ for all positive $\epsilon$, proving the claim.
+
+
+\end{solution}
+\begin{problem}\label{harmonic-function}
+  For an open subset $U \subset \R^2$, a \textbf{harmonic function} $f : U \to \R$ is a twice continuously differential function satisfying the Laplace's equation
+  \[
+    \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} = 0.
+  \]
+  Suppose $f(x,y) = Ax^3 + Bx^2 y + C xy^2 + D y^3$ is harmonic for constants $A, B, C, D \in \R$.  Relate $f$ to $z \cdot (x + iy)^3$.
+\end{problem}
+\begin{solution}
+Since $f$ satisfies the Laplace equation, it must be that
+\begin{align*}
+  [6Ax+2By] + [2Cx + 6Dy] = 0
+\end{align*}
+Then the following 2 equations must be satisfied:
+\begin{align*}
+3A = -C\\
+3D = -B
+\end{align*}
+
+Note that the coefficients of
+\[
+(x+iy)^3 = x^3 + 3ix^2y - 3xy^2 - iy^3
+\]
+satisfy these two constraints, and they continue to be satisfied after multiplication by $z$. Furthermore, if we take the real part of the coefficients, the constraints (which involve scaling by real numbers) will still be satisified, and furthermore it's easy to see that every solution can be obtained in this way.
+So there is a bijection from points $z$ on the complex plane to the set of valid $f$ made by multiplying $z$ by $(x+iy)^3$ and taking the real part of every coefficient.
+
+\end{solution}
+\section{Prove or Disprove and Salvage if Possible (PODASIP)}
+
+\begin{problem}\label{blaschke-factors}
+  Suppose $w \in \C$ and $\abs{w} < 1$.  Define a function by the rule
+  \[
+    f(z) = \frac{w - z}{1 - \conj{w}z}.
+  \]
+  If $\abs{z} < 1$, then $\abs{f(z)} < 1$.  (These are \textbf{Blaschke factors}.)
+\end{problem}
+\begin{solution}
+This is true, provided that $z\in(\C/\conj{w}^{-1})$ (so the denominator is nonzero).
+If $\abs{f(z)} < 1$, then multiplying by the denominator and squaring gives
+\begin{align*}
+|1-\conj{w}z|^2 > |w-z|^2\\
+(1-\conj{w}z)(1-w\conj{z}) > (w-z)(\conj{w}-\conj{z}) \\
+(1-\conj{w}z-w\conj{z}+|\conj{w}z|) > |w|^2 + -\conj{w}z - w\conj{z}+ |z|^2\\
+1 + |\conj{w}z|^2 > |w|^2 + |z|^2 \\
+1 - |w|^2 - |z|^2 + |w||z|^2 > 0\\
+(1 - |w|^2)(1 - |z|^2) > 0
+\end{align*}
+And this is evidently true.
+\end{solution}
+
+\begin{problem}\label{C-complete} % you may assume R is complete.
+  The field $\mathbb{C}$ is complete.
+\end{problem}
+\begin{solution}
+Let $a_j + ib_j;j\in \mathbb{R}$ be a cauchy sequence of complex numbers. Then $\forall \epsilon \exists N s.t. j, k > N \implies |(a_j - a_k) + i(b_j - b_k)| < \epsilon.$ Thus 
+$(a_j-a_k)^2 + (b_j - b_k)^2 < \epsilon$
+and so
+$(a_j-a_k)^2 < \epsilon \land (b_j - b_k)^2 < \epsilon.$
+Thus the $a_i$ and $b_i$ are both cauchy sequences of real numbers. Since the real numbers are complete, we can find $N$ so that the $a_i$ approach some real number $L_1$ within $\epsilon$ and the $b_i$ approach some real number $L_2$ within $\epsilon$. So the norm of points after the $N$th point is $|(a_i - L_1) + i(b_i-L_2)| \leq \epsilon^2 + \epsilon^2$, which can be made arbitrarily small.
+\end{solution}
+\begin{problem}
+ For all $z, w \in \C$ it is the case that $\sqrt{z} \sqrt{w} = \sqrt{zw}$.
+\end{problem}
+\begin{solution}
+False. Let $z=w=-i$. Then 
+\[(\sqrt{-i})^2 = \left(e^{(\frac{1}{2}\Log(-i)}\right)^2 = \left(e^{\frac{-i\pi}{4}}\right)^2 = -i\]
+But $\sqrt{-i*-i} = \sqrt{-1} = i$.
+
+A salvage is to say that $\sqrt{z} \sqrt{w} = \pm\sqrt{zw}.$ Let $z=e^{a+bi}, w=e^{c+di}$. Then
+\begin{align*}
+\sqrt{zw} &= \exp\left(\frac{\Log e^{a+c+(b+d)i}}{2}\right)\\
+&= \exp\left(\frac{a+c + (b+d)i + 2i\pi k_1}{2}\right)\\
+&= \exp\left(\frac{a+c + (b+d)i}{2} + i\pi k_1\right)\\
+\end{align*}
+for $k_1\in\Z$, and similarly
+\begin{align*}
+\sqrt{z}\sqrt{w} &= (\exp\frac{a+bi + 2i\pi k_2}{2})(\exp\frac{c+di + 2i\pi k_3}{2}) = \exp\left(\frac{a+c + (b+d)i}{2} + i\pi (k_2 + k_3)\right)
+\end{align*}
+for $k_2, k_3 \in \Z$. The only difference in these equations is the choice of $k_1,k_2,k_3$, which changes only the sign.
+\end{solution}
+\begin{problem} % missing non-empty, compact
+  Suppose $K_1 \supset K_2 \supset \cdots$ be nested subsets of $\C$ so that $\diam K_n < 1/2^n$.  Then
+  \[
+    \bigcap_{n=1}^\infty K_n
+  \]
+  is non-empty and consists of a single point.
+\end{problem}
+\begin{solution}
+False, let $K_1 = \emptyset$. To salvage, we assume that each $K_n$ is nonempty and furthermore compact.
+
+First, note that no more than 1 point can be inside of the intersection - if there are two or more points, there is a pair of distance $d$ apart, but we can choose $n$ such that $\diam K_n < 1/2^n < d$, so it cannot contain both points.
+
+Consider the sequence $c_n$ of complex numbers defined by choosing $c_n$ as an arbitrary point in $K_n$. $c_n$ is a Cauchy sequence since the distance between points gets arbitrarily small (less than $\frac{1}{2}^N$ after the $N$th point.) Since $\C$ is complete \ref{C-complete}, the limit point exists, and we will show it is contained in the intersection.
+
+It suffices to show that the limit point is contained in $K_i$ for arbitrary $i$. Since every point of $c_n$ after the $i$th is contained in $K_n$, $c_n$ is Cauchy, and $K_n$ is compact, the limit point is contained in $K_n$.
+\end{solution}
+
+\begin{problem}
+ For all $a, b, z \in \C$ it is the case that $z^a \, z^b = z^{a+b}$.
+\end{problem}
+\begin{solution}
+True.
+\[
+z^az^b = e^{a\Log{z}}e^{b\Log{z}} = e^{(a+b)\Log{z}} = z^{a+b}
+\]
+\end{solution}
+
+
+\begin{problem}\label{cross-ratio}
+  Define the \textbf{cross-ratio} of distinct complex numbers $z_1,z_2,z_3,z_4 \in \C$ by
+\[
+\left(z_1,z_2;z_3,z_4\right):=\frac {\left(z_3-z_1\right)\,\left(z_4-z_2\right)}{\left(z_3-z_2\right)\,\left(z_4-z_1\right)}.
+ \]
+ If $f$ is a M\"obius transformation (cf.~\ref{mobius-transformations}), then
+ \[
+   \left(z_1,z_2;z_3,z_4\right) =
+   \left(f(z_1),f(z_2);f(z_3),f(z_4)\right).
+\]
+\end{problem}
+\begin{solution}
+Let's plug it into the mobius tranformation $f(z) = \frac{az + b}{cz + d}$ and see.
+\[
+\left(f(z_1),f(z_2);f(z_3),f(z_4)\right) = 
+\frac{
+(\frac{az_3+b}{cz_3+d} - \frac{az_1+b}{cz_1+d})(\frac{az_4+b}{cz_4+d} - \frac{az_2+b}{cz_2+d})
+}{
+(\frac{az_3+b}{cz_3+d}-\frac{az_2+b}{cz_2+d})(\frac{az_4+b}{cz_4+d}-\frac{az_1+b}{cz_1+d})
+}
+\]
+Now multiply top and bottom by $\prod_{i=1}^4 cz_i + d.$
+\begin{align*}
+&=\frac{
+[(az_3 + b)(cz_1+d) - (az_1 + b)(cz_3 + d)][(az_4 + b)(cz_2+d) - (az_2 + b)(cz_4 + d)]
+}{
+[(az_3 + b)(cz_2+d) - (az_2 + b)(cz_3 + d)][(az_4 + b)(cz_1+d) - (az_1 + b)(cz_4 + d)]
+}\\
+&=\frac{
+((ad-bc)z_3 + (bc-ad)z_1)((ad-bc)z_4 + (bc-ad)z_2)
+}{
+((ad-bc)z_3 + (bc-ad)z_2)((ad-bc)z_4 + (bc-ad)z_1)
+}\\
+&= \frac{(z_3 - z_1)(z_4-z_2)}{(z_3-z_2)(z_4 - z_1)}
+\end{align*}
+Ok that looks the same to me, must be true.
+\end{solution}
+
+\end{document}
+
