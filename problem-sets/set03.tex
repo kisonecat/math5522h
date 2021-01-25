@@ -3,24 +3,140 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+Nature laughs at the difficulties of integration.
+\byline{Pierre-Simon Laplace} % what's the original source for this quotation?
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  What does it mean to say that $\Omega \subset \C$ is connected?  Is path-connected?  
+\end{problem}
+
+\begin{problem}
+  What is a piecewise-smooth \textbf{curve}?  When are two curves ``the same''?  
+\end{problem}
+
+\begin{problem}
+    Define $\int_\gamma f(z) \, dz$ and define $\int_\gamma f(z) \, dx$ and define $\int_\gamma f(z) \, dy$.
+\end{problem}
+
+\begin{problem}
+  Define $\int_\gamma f(z) \, d\conj{z}$.
+\end{problem}
+
+\begin{problem}
+  Define $\int_\gamma f(z) \, \abs{dz}$.
+\end{problem}
+
+\begin{problem}
+  What does it mean to say that a $1$-form is \textbf{exact}?
+\end{problem}
+
+\begin{problem}
+  What are the \textbf{poles} and \textbf{zeros} of a rational
+  function $p(z)/q(z)$?
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}Consider a piecewise smooth curve $\gamma$ tracing the boundary of the square
+  $$S = \{ z = x+iy\in \C : \abs{x} \mbox{ or } \abs{y} \leq 1 \}.$$
+  Compute $\displaystyle\int_\gamma \frac{1}{z} \, dz$ by hand.
+\end{problem}
+
+\begin{problem}\label{integral-powers-of-z}Consider the curve $\gamma : [0,2\pi] \to \C$ given by $\gamma(\theta) = e^{i\theta}$.  For an integer $n \in \Z$, compute $\displaystyle\int_\gamma z^n \, dz$ and $\displaystyle\int_\gamma \conj{z}^n \, dz$.
+\end{problem}
+
+\begin{problem}\label{one-over-z-around-circle}Let $\gamma$ be a (positively oriented) parametrization of a circle
+  in the plane, and suppose the image of $\gamma$ does not include the
+  origin.  Compute $\displaystyle\int_\gamma \frac{1}{z} \, dz$.
+\end{problem}
+
+\begin{problem}\label{lacunary-series}What is radius $R$ of convergence of
+  $\displaystyle\sum_{n=1} x^{(n!)}$?  (This is a \textbf{lacunary
+    series} with large gaps between nonzero terms.)
+\end{problem}
+
+% primitives
 
 \section{Exploration}
 
+\begin{problem}For the series in \ref{lacunary-series}, find a dense
+  subset of the circle $\{ z \in \C : \abs{z} = \R \}$ where the series
+  diverges.
+\end{problem}
+  
+\begin{problem}
+  For which $z \in \C$ with $|z|=1$ does the series
+  $\displaystyle\sum_{n=0}^{\infty} \frac{z^n}{n}$ converge?  Diverge?
+\end{problem}
+
+\begin{problem}Suppose $f : \C \to \C$ is a rational function which
+  sends the unit circle to the real line, i.e., for $z \in \C$ with
+  $|z| = 1$ we have $f(z) \in \R$.  Inspired
+  by \label{schwarz-reflection-principle}, compute
+  $\overline{f(1/\conj{z})}$ and then discuss the relationship between
+  the poles and zeros of $f$.
+\end{problem}
+
+\begin{problem}In lecture, we briefly saw an example (the
+  \textbf{topologist's sine curve}) of a subset of $\mathbb{C}$ which
+  is connected but not path-connected.  For open subsets of
+  $\mathbb{C}$, what is the relationship between connectedness and
+  path-connectedness?
+\end{problem}
+
+\begin{problem}\label{argument-principle-numerical}Consider $\gamma : [0,2\pi] \to \C$ given by $\gamma(\theta) = e^{i\theta}$.  For an integer $n \in \Z$ and $f(z) = z^n$, compute
+  \[
+    \frac{1}{2\pi i} \displaystyle\int_\gamma \frac{f'(z)}{f(z)} \, dz
+  \]
+  in two different ways.  First, evaluate $f'(z)/f(z)$ and invoke
+  \ref{integral-powers-of-z}.  Second, describe a curve $\gamma_n$ and
+  interpret $\int_\gamma \frac{f'(z)}{f(z)} \, dz$ as
+  $\int_{\gamma_n} dz/z$ for that different curve $\gamma_n$.  (This
+  is our first glimpse of the \textbf{argument principle}.)
+\end{problem}
+
+\begin{problem}
+  Consider the curve $\gamma : [0,2\pi] \to \C$ given by $\gamma(\theta) = e^{i\theta}$.  For $w \in \C$ with $|w| \neq 1$, compute
+  \[
+    \frac{1}{2\pi i} \displaystyle\int_\gamma \frac{1}{z-w} \, dz
+  \]
+  perhaps by invoking \ref{one-over-z-around-circle}.
+\end{problem}
+
+\begin{problem}
+  Yet again consider the curve $\gamma : [0,2\pi] \to \C$ given by $\gamma(\theta) = e^{i\theta}$.  For distinct $w_1, w_2 \in \C$ with $\abs{w_1} \neq 1$ and $\abs{w_2} \neq 1$, let $f(z) = (z - w_1) (z - w_2)$ and compute
+  \[
+    \frac{1}{2\pi i} \displaystyle\int_\gamma \frac{f'(z)}{f(z)} \, dz.
+  \]
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
 
+\begin{problem}
+  If $e^z = e^w$, then $z = w$.
+\end{problem}
+
+\begin{problem}
+  If $f \, dz$ is exact, then $\displaystyle\int_\gamma f \, dz = 0$.
+\end{problem}
+
+\begin{problem}% orientation issues
+  Suppose $\gamma : [0,1] \to \C$ is a smooth curve, and $p : [0,1] \to [0,1]$ is a smooth bijection.
+  Then
+  \[
+    \int_\gamma f(z) \, dz = \int_{\gamma \circ p} f(z) \, dz.
+  \]
+\end{problem}
+
+  \begin{problem}\label{identity-theorem}If $f \in \C[z]$ is a polynomial with infinitely many zeros, then
+    $f \equiv 0$.
+  \end{problem}
+  
 \end{document}
