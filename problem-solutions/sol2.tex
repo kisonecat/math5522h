@@ -1,0 +1,456 @@
+\documentclass{homework}
+\course{Math 5522H}
+\author{Alex Li}
+\input{preamble}
+
+\begin{document}
+\maketitle
+
+\begin{inspiration}
+I don't think \byline{Warren Buffett}
+\end{inspiration}
+
+\section{Terminology}
+
+\begin{problem}
+  What is a half-space?  Define convex hull.
+\end{problem}
+\begin{solution}
+A (open) half-space is a set of points in $\C$ is the set of points on one side of a line, i.e. $H=\{z: z\cdot u > b\}$ for a unit vector $u\in\C$, $b\in\Z$
+ 
+The convex hull of a set of points is the intersection of all half-spaces containing every point of the set.
+
+\end{solution}
+\begin{problem}
+Define the Wirtinger partial derivatives $\displaystyle\frac{\partial}{\partial z}$ and $\displaystyle\frac{\partial}{\partial \conj{z}}$.
+\end{problem}
+\begin{solution}
+For a function $f$ with domain $\C = \{x + iy|x, y\in\R\}$, we define the Wirtinger partial derivatives as follows:
+\[\pfrac{}{z} = \frac{1}{2}(\pfrac{}{x} - i\pfrac{}{y})\]
+\[\pfrac{}{\conj{z}} = \frac{1}{2}(\pfrac{}{x} + i\pfrac{}{y})\]
+\end{solution}
+
+\begin{problem}
+  What are the Cauchy-Riemann equations?
+\end{problem}
+We can uniquely represent a complex function of $z = x + iy$ as a sum of two real functons of two variables, $u$ and $v$, to get the equation  $f(z) = u(x, y) + iv(x, y).$
+The Cauchy-Riemann equations are the following
+\begin{solution}
+\[\pfrac{u}{x} = \pfrac{v}{y}\label{cauchy-riemann-x-real}\]
+\[\pfrac{u}{y} = -\pfrac{v}{x}\label{cauchy-riemann-y-real}\]
+\end{solution}
+These two equations are neccessary for differentiability of f and, together with continuity of the partial derivatives, sufficient. 
+
+\section{Numericals}
+
+\begin{problem}\label{cauchy-riemann-polar}
+What are the Cauchy-Riemann equations\ldots in polar coordinates?
+\end{problem}
+\begin{solution}
+Suppose that $f(re^{i\theta}) = u(r, \theta) + iv(r, \theta)$ is a complex differentiable  function. Let's ignore the origin since $\theta$ isn't even defined, this formula can apply everywhere else. Then differenting along the first coordinate,
+\begin{align*}
+f'(r_0e^{i\theta_0}) &=  \lim_{r\to r_0} \frac{u(r, \theta_0) + iv(r, \theta_0) - u(r_0, \theta_0) - iv(r_0, \theta_0)}{re^{i\theta_0} - r_0e^{i\theta_0}}\\
+&= \frac{1}{e^{i\theta_0}}\lim_{r\to r_0} \frac{u(r, \theta_0) - u(r_0, \theta_0)}{r - r_0} + \frac{i}{e^{i\theta_0}} \lim_{r\to r_0} \frac{v(r, \theta_0) - v(r_0, \theta_0)}{r - r_0}
+\end{align*}
+\begin{align}\label{first_rc_polar}
+f'(r_0e^{i\theta_0}) &= \frac{u_r + iv_r}{e^{i\theta}}
+\end{align}
+Next, we differentiate along the second coordinate, $\theta$. 
+\begin{align*}
+f'(r_0e^{i\theta_0}) &=  \lim_{\theta\to \theta_0} \frac{u(r_0, \theta) + iv(r, \theta_0) - u(r_0, \theta_0) - iv(r_0, \theta_0)}{r_0(e^{i\theta} - e^{i\theta_0})}\\
+&= \lim_{\theta\to \theta_0} \frac{u(r_0, \theta) - u(r_0, \theta_0)}{r_0e^{i}(e^\theta - e^{\theta_0})} + i \lim_{\theta\to \theta_0} \frac{v(r, \theta_0) - v(r_0, \theta_0)}{r_0e^{i}(e^\theta - e^{\theta_0})}
+\end{align*}
+We want to compare this to the real partial derivatives in the direction $\theta$:
+\begin{gather*}
+\pfrac{u(r_0, \theta_0)}{\theta} = \lim_{\theta\to \theta_0} \frac{u(r_0, \theta) - u(r_0, \theta_0)}{\theta - \theta_0}\\
+\pfrac{v(r_0, \theta_0)}{\theta} = \lim_{\theta\to \theta_0} \frac{v(r_0, \theta) - v(r_0, \theta_0)}{\theta - \theta_0}
+\end{gather*}
+In the limit, the ratio between these two can be computed by noticing that $\lim_{\theta\to\theta_0}\frac{e^{i\theta} - e^{i\theta_0}}{i\theta - i\theta_0}$ is the derivative of $e^z$ at $i\theta_0$.
+\[\lim_{\theta \to \theta_0} \frac{\theta - \theta_0}{r_0(e^{i\theta} - e^{i\theta_0})} = r_0\lim_{\theta \to \theta_0} \frac{i\theta - i\theta_0}{e^{i\theta} - e^{i\theta_0}}\frac{1}{i} = r_0\times e^{i\theta}\times\frac{1}{i}
+\]
+Thus we see that
+\begin{align}\label{second_rc_polar}
+f'(r_0e^{i\theta_0}) = \frac{v_{\theta_0} - iu_{\theta_0}}{e^{i\theta_0}r_0}
+\end{align}
+Setting real and imaginary parts equal in \ref{first_rc_polar} and \ref{second_rc_polar},
+\begin{align*}
+r_0u_r = v_\theta \\
+r_0v_r = - u_\theta
+\end{align*}
+\end{solution}
+\begin{problem}
+  For a natural number $n$ define $f : \mathbb{C} \to \mathbb{C}$ by
+  \[
+    f(r \cos \theta + i \, r\sin \theta) = r^n \cos \left( n\theta \right) + i \, r^n \sin \left( n\theta \right).
+  \]
+  Use \ref{cauchy-riemann-polar} to verify that $f$ satisfies the
+  Cauchy-Riemann equations.
+\end{problem}
+\begin{solution}
+Let $u=r^n\cos(n\theta)$, $v = r^n\sin(n\theta)$, and we compute the 4 partials.
+\begin{align*}
+u_r &= nr^{n-1}\cos(n\theta)\\
+v_r &= nr^{n-1}\sin(n\theta)\\
+u_\theta &= -nr^{n}\sin(n\theta) = -rv_r\\
+v_\theta &= nr^{n}\cos(n\theta) = ru_r\\
+\end{align*}
+\end{solution}
+
+
+\begin{problem}
+  On a certain domain, define $f(z) = \log \abs{z} + i \cdot \Arg z$
+  and verify that $f$ satisfies the Cauchy-Riemann equations.
+\end{problem}
+\begin{solution}
+Let $z=r\cos{\theta} + r\sin{\theta}$ with $\theta \in (-\pi, \pi)$, so $f(z) = \Log r + i \theta$. We validate the cauchy riemann equations on the domain $\C\setminus(-\infty, 0]$ by first noting that they are differentiable on this domain, then checking them in polar coordinates:
+\begin{align*}
+u_r &= \frac{1}{r} &  u_\theta &= 0\\
+v_r &= 0 & v_\theta &= 1
+\end{align*}
+Thus $rv_r = u_\theta$ and $ru_r = v_\theta$
+\end{solution}
+
+\begin{problem}
+Compute $\displaystyle\frac{\partial}{\partial z} \left( z \conj{z} \right)$.
+\end{problem}
+\begin{solution}
+\begin{align*}
+\pfrac{}{z} \left( z \conj{z} \right) &= \frac{1}{2}(\pfrac{}{x}(x^2+y^2) - i\pfrac{}{y}(x^2+y^2))\\
+&= x - iy\\
+\end{align*}
+If we pretend $z$ and $\conj z$ are independent and differentiate, we get the same answer:
+\begin{align*}
+\pfrac{}{z} \left( z \conj{z} \right) &= \conj{z} = x - iy\\
+\end{align*}
+\end{solution}
+
+\begin{problem}\label{harmonic-conjugate}Let $u(x,y) = e^y \sin x$.  Find $v(x,y)$ so that $u$ and $v$ satisfy the Cauchy-Riemann equations.  Such a function $v$ is a
+  \textbf{harmonic conjugate} of $u$.
+\end{problem}
+\begin{solution}
+First, let's compute the partial derivatives of $v$ with the Cauchy-Riemann equations.
+\[u_x = -e^y\cos{x} = v_y\]
+\[-u_y = -e^y\sin{x} = v_x\]
+Integrating, 
+\[v = \int v_y dy = -e^y\cos{x} + C(x)  = -e^y\cos{x} + C(y) = \int v_x dx\]
+So $v = -e^y\cos{x} + C$ for any real number $C$.
+\end{solution}
+\section{Exploration}
+
+\begin{problem}\label{cayley-transform}Relate the upper half-plane
+  $H = \{ z \in \mathbb{C} : \Imag z > 0 \}$ and the open disk
+  $D = \{ z \in \mathbb{C} : \abs{z} < 1 \}$ by finding $a,b,c,d \in \C$ so that the M\"obius transformation
+  \[f(z) = \frac{az + b}{cz + d}\] yields a bijection $f : H \to D$.
+\end{problem}
+\begin{solution}
+Maybe it will work if the transformation sends the real line to the unit circle, with say $f(0)\mapsto -i$, $f(1)\mapsto 1$, $f(\infty)\mapsto i$. Solving for $a,b,c,d$, we get the following mobius transformation:
+$f(z) = \frac{iz+1}{z + i}.$
+
+% https://en.wikipedia.org/wiki/M%C3%B6bius_transformation#Composition_of_simple_transformations
+We can check that we can write this mobius tranformation $f(z) = f_4\cdot f_3 \cdot f_2 \cdot f_1(x)$ where $f_1 = z + i$ (mapping $H$ to the half plane above the line with i=1), $f_2 = 1/z$ (mapping $Image f_1$ to the open circle with radius $\frac{1}{2}$ between 0 and $-i$), $f_3 = 2z$ (mapping $Image f_2$ to the circle between 0 and $-2i$) and $f_4 = z + i$ (mapping $Image f_3$ to D).
+
+It's easy to see that each of the $f_i$ are bijective, so $f$ must be bijective as well.
+\end{solution}
+
+
+\begin{problem}\label{harmonic-necessary}Given $u : \mathbb{R}^2 \to \mathbb{R}$, is it always possible to
+  find a function $v : \mathbb{R}^2 \to \mathbb{R}$ so that $u$ and
+  $v$ satisfy the Cauchy-Riemann equations?
+\end{problem}
+\begin{solution}
+Obviously not if $u$ isn't differentiable. Let's assume that $u$ is twice differentiable with equal mixed partials. Then we can solve for $v$ like in \ref{harmonic-conjugate}:
+\[v = \int u_x dy = -\int u_y dx.\]
+Thus $v_{xy} = -u_{yy}$ and $v_{yx} = u_{xx}$, and we need $u$ to satisfy $u_{xx} = -u_{yy}$. If that's true, then integrating $u_xdy$ and $u_ydx$ should give the same answer for $v$, so $u$ will have a harmonic conjugate.
+\end{solution}
+
+
+\begin{problem}
+  For $p \in \C[x]$, show that the convex hull of the zeroes of $p$
+  contains the zeroes of $p'$.  This is the \textbf{Gauss-Lucas
+    theorem}.
+\end{problem}
+\begin{solution}
+By the fundamental theorem of algebra, we can split the polynomial $p$ into linear factors $p = \prod_i(z - r_i).$
+Now notice that for functions $f_1(z), f_2(z), ... f_n(z)$, the product rule gives
+\begin{align}\label{log-derivative-product-to-sum}
+\frac{\frac{d}{dz}\prod_i f_i}{\prod_i f_i} = \frac{\sum_i f_i'\prod_{j\neq i}f_j}{\prod_i f_i} = \sum_i\frac{ f_i'}{f_i}
+\end{align}
+Using this fact, we can compute
+\[
+\frac{\frac{dp}{dz}}{p} = \frac{\frac{d}{dz}\prod_i (z - r_i)}{\frac{d}{dz}\prod_i (z - r_i)} = \sum_i \frac{\frac{d}{dz}(z-r_i)}{z - r_i} = \sum_i \frac{1}{z - r_i}
+\]
+
+Let's consider an arbitrary half space $H=\{z: z\cdot u > b\}$ for a unit vector $u\in\C$, $b\in\Z$ which contains none of the zeros of $p$. Then for points $z$ in this half space, $(z-r_i)\cdot u = z\cdot u - r_i \cdot u$.
+Here $z\cdot u > b$ since $z\in H$, and $r_i \cdot u <= b$ since $r_i\not\in H$, so $(z-r_i)\cdot u > 0$ and thus $\frac{1}{z-r_i}\cdot u > 0$.
+
+By linearity, \[0 < \sum_i \frac{1}{z - r_i} \cdot u  = \frac{\frac{dp}{dz}}{p}\cdot u\] so $\frac{dp}{dz} \neq 0$ on this half space (as $p$ is nonzero). Since the half space was choosen aribtrarily from the half spaces containing none of the zeros of $p$, there are no zeros of $p'$ outside of the convex hull of zeros of $p$.
+\end{solution}
+\begin{problem}\label{cauchy-riemann-again}
+  Suppose the smooth function $f : \C \to \C$ satisfies the
+  Cauchy-Riemann equations.  Does $f'$ also satisfy the Cauchy-Riemann
+  equations?
+\end{problem}
+\begin{solution}
+Let $f = u(x,y) + iv(x,y).$ 
+Taking the derivative of $f$ in the $x$ direction, $f' = u_x + iv_x,$ and so to show $f'$ satisfies the Cauchy Riemann equations that we want to show that $u_{xx}=v_{xy}$ and $u_{xy} = -v_{xx}.$ To do this, notice that since $f$ satisfies the equations, $u_{x} = v_y$ and $u_y=-v_x$. Taking the $x$ derivative of these two equations and using the equality of mixed partials we show what we wanted: namely, that $u_{xx}=v_{xy}$ and $u_{xy} = -v_{xx}.$ So $f'$ satisfies the Cauchy Riemann equations.
+\end{solution}
+\begin{problem}
+  Suppose $f : \R^2 \to \R^2$ satisfies the Cauchy-Riemann equations,
+  and consider curves $\gamma_1, \gamma_2 : (-1,1) \to \R^2$ passing
+  through the origin so that $\gamma_1(0) = \gamma_2(0) = (0,0)$.
+  Relate the angle between the curves $\gamma_1$ and $\gamma_2$ to the
+  angle between the curves $f \circ \gamma_1$ and $f \circ \gamma_2$.
+  (This is related to \ref{tj-versus-jt}.)
+\end{problem}
+\begin{solution}
+To get the angle between the curves, we need to compare the derivatives between the curves at the point (0,0).
+
+\[\frac{d}{dt} f(\gamma_1(t)) = 
+\begin{pmatrix}
+u_x &u_y\\
+v_x &v_y\\
+\end{pmatrix}
+\begin{pmatrix}
+\partial_1\gamma_1\\
+\partial_2\gamma_1\\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+u_x & u_y\\\
+-u_y & u_x\\
+\end{pmatrix}
+\begin{pmatrix}
+\partial_1\gamma_1\\
+\partial_2\gamma_1\\
+\end{pmatrix}\]
+We can choose some choice of $R, \theta$ based on the values of $u_x, u_y$ so that we get
+\[\frac{d}{dt} f(\gamma_1(t)) = 
+R
+\begin{pmatrix}
+\cos{\theta} & \sin{\theta}\\
+\sin{\theta} & \cos{\theta}\\
+\end{pmatrix}
+\begin{pmatrix}
+\partial_1\gamma_1\\
+\partial_2\gamma_1\\
+\end{pmatrix}
+\]
+Thus, applying $f$ to $\gamma_1$ will give us a derivative vector pointing in the direction $\arg(\gamma_1) + \theta,$ and similarly applying $f$ to $\gamma_2$ will result in a derivative pointing in the direction $\arg(\gamma_2)+\theta$. Thus the argle between $\gamma_1$ and $\gamma_2$ at the point $(0,0)$ is equal to the angle after applying $f$.
+\end{solution}
+\begin{problem}
+  Suppose $f : \C \to \C$ is smooth and holomorphic.  Show that the
+  real part of $f$ is harmonic (cf.~\ref{harmonic-function}).
+\end{problem}
+\begin{solution}
+We can solve similarly to \ref{cauchy-riemann-again}. Let $f=u+iv$, since $f$ is harmonic it satisfies the cauchy riemann equations and thus
+\begin{align*}
+u_x=\phantom{-}v_y &\implies u = \phantom{-}\int v_y dx &\implies u_{xx} = \phantom{-}v_{yx}\\
+u_y=-v_x &\implies u = -\int v_x dy &\implies u_{yy} = -v_{xy}\\
+\end{align*}
+Since $f$ is smooth, its mixed partials are equal and thus $u_{yy}=u_{xx}$.
+\end{solution}
+\begin{problem}
+  Let's redo \ref{abels-theorem} in the context of complex analysis.
+  Consider a sequence $(a_i)$ of complex numbers so that
+  $\sum_{i=0}^\infty a_i$ converges to $L$.  Then
+  $\lim_{z \to 1^{-}} \sum_{i=0}^\infty a_i z^i = L$ provided
+  $z \to 1$ in a \textbf{Stolz sector}, i.e., suppose there is some
+  $K$ so that $|1-z| \leq K(1-|z|)$.
+\end{problem}
+\begin{solution}
+\begin{lemma}\label{conditional-row-sum-absolute-column-sum}
+Suppose $\sum_i^\infty a_i,$ $\sum_i^\infty b_i=B,$ and $\sum_{i=0}^\infty\sum_{j=0}^\infty f(i,j) = L$ are convergent, with $f(i, j) = \begin{cases}a_ib_j & i \leq j\\0. \end{cases}$.
+Then $\sum_{j=0}^\infty\sum_{i=0}^\infty f(i, j)$ converges to L.
+\end{lemma}
+\begin{proof}
+For any $N$, we have the following
+\begin{align*}
+|\sum_{j=0}^\infty\sum_{i=0}^\infty f(i,j) - \sum_{i=0}^N\sum_{j=0}^\infty f(i,j)| &=
+|(\sum_{j=0}^\infty\sum_{i=0}^\infty a_ib_j - \sum_{i=0}^\infty\sum_{j=0}^{i-1} a_ib_j) - (\sum_{i=0}^N a_iB - \sum_{i=0}^N\sum_{j=0}^{i-1}a_ib_j|)\\
+&= |\sum_{j=0}^\infty\sum_{i=0}^\infty a_ib_j - B\sum_{i=0}^N a_i - \sum_{i=N+1}^\infty \sum_{j=0}^{i-1} a_ib_j|\\
+&\leq |\sum_{j=0}^\infty b_j\sum_{i=0}^\infty a_i - \sum_{j=0}^\infty b_j\sum_{i=0}^N a_i| +  |\sum_{i=N+1}^\infty a_i\sum_{j=0}^{i-1} b_j|\\
+&\leq |\sum_{j=0}^\infty \left(b_j\sum_{i=N+1}^\infty a_i\right)| +  |\sum_{i=N+1}^\infty a_i\sum_{j=0}^{i-1} b_j|
+\end{align*}
+Let $B'$ be the sup of the absolute value of the maximum partial sum of $b_j$. Then, choose $N$ so that $|\sum_{i=N+1}^\infty a_i| < \frac{\epsilon}{2B'}$. Plugging this into the last equation, we can conclude
+\begin{align*}
+|\sum_{j=0}^\infty\sum_{i=0}^\infty a_ib_j - \sum_{i=0}^N\sum_{j=0}^\infty a_ib_j| &\leq
+|B'\frac{\epsilon}{2B'}| +|\frac{\epsilon}{2B'}B'|   \leq \epsilon
+\end{align*}
+So the two sums are equal.
+\end{proof}
+With this we move onto the proof of the theorem. First, notice that the condition $|1-z|\leq K(1-|z|)$ implies $|z| <  1$, as if $|z| < 1$ then the RHS is negative (impossible since there is an absolute value). If $|z|=1$ then the RHS may be 0, but the only way the inequality is satisfied is if $z=1$, and that's the limit point.
+
+Thus $\sum a_iz^i$ converges absolutely by comparison to the geometric series $max(a_i)|z|^i$.
+
+We would like to show that the two values have difference zero. Subtract them, expand, and sum `along the columns instead of along the rows'. Lemma \ref{conditional-row-sum-absolute-column-sum} shows that this operation will not mess anything up.
+\begin{align*}
+\sum a_i - \sum a_iz^i &= \sum a_i(1-z^i)\\
+&= \sum_{i=0}^\infty a_i(1-z)(1 + z + \dots + z^{i-1})\\
+&= (1 - z)\sum_{j=0}^\infty z^j\sum_{i=j}^\infty a_i
+\end{align*}
+It suffices to prove that the absolute value of the difference is 0. Note that since $\sum a_i$ converges, $\forall \epsilon > 0$, we can find a number $N$ so that for all $i\geq N$, $L-\sum_{i=1}^{N-1} a_i = \sum_{i=N}^\infty a_i < \epsilon.$
+\begin{align*}
+|\sum a_i - \sum a_iz^i| &=  \left|(1 - z)\sum_{j=0}^\infty z^j\sum_{i=j}^\infty a_i\right|\\
+&\leq \left|K(1 - |z|)\right|\sum_{j=0}^{N-1} |z|^j\left|\sum_{i=j}^\infty a_n\right| + \left|K(1 - |z|)\right|\sum_{j=N}^\infty |z|^j|\epsilon|\\
+&\leq \left|K(1 - |z|^{N})(L-\sum_{i=0}^N\sum_{j=0}^N a_i)\right| +
+|K\epsilon|\\
+&\leq C_1(N)(1 - |z|^{N}) + C_2\epsilon
+\end{align*}
+For some positive constant $C_2$ and constant function of $N$ $C_1(N)$. We can make the second term go to 0 by choosing $N$ to be huge so that $\epsilon$ vanishes, and we can then independently make the first term go to zero by choosing $z$ close enough to 1 that $1-|z|^N$ is close to 0.
+\end{solution}
+\section{Prove or Disprove and Salvage if Possible}
+As always with PODASIPs, many of statements below are incorrect.  For
+full credit, you must not only salvage these false statements, but
+also explain why the statement is false (e.g., perhaps by exhibiting a
+counterexample).
+
+\begin{problem}
+  Suppose $f : \R^2 \to \R^2$ and $g : \R^2 \to \R^2$ are smooth (but
+  not necessarily holomorphic when regarded as functions from $\C$ to
+  $\C$).  Then by the chain rule,
+  \[
+    \frac{\partial}{\partial z} \left( f \circ g \right) =
+    \frac{\partial f}{\partial z} \frac{\partial g}{\partial z} + \frac{\partial f}{\partial \conj{z}} \frac{\partial g}{\partial \conj{z}}.
+  \]
+  and similarly
+  \[
+    \frac{\partial}{\partial \conj{z}} \left( f \circ g \right) =
+    \frac{\partial f}{\partial \conj{z}} \frac{\partial g}{\partial \conj{z}} + \frac{\partial f}{\partial z} \frac{\partial g}{\partial z}.
+  \]
+\end{problem}
+\begin{solution}
+Surely not, as this would imply that $\pfrac{f\circ g}{z} = \pfrac{f\circ g}{\conj z}$. Plus, $\pfrac{f}{z}$ doesn't make that much sense since $f$ isn't really a function of $z$ but rather $g(z)$.
+
+\begin{align*}
+\pfrac{f\circ g}{z} &= \frac{1}{2}(\pfrac{}{x} - i\pfrac{}{y})(f\circ g)
+\end{align*}
+Define real valued 2 variable functions $u_1, v_1, u_2, v_2$ so that $g(x,y) = u_2(x,y) + iv_2(x,y)$, $f(x, y) = u_1(x, y) + iv_1(x, y)$. Then 
+\begin{align*}
+(f\circ g)(x+iy) = u_1(u_2(x, y), v_2(x, y)) + iv_1(u_2(x, y), v_2(x, y))
+\end{align*}
+Applying the chain rule, we can get the $x$ and $y$ derivative:
+\begin{align*}
+\pfrac{f\circ g}{x} &= \pfrac{f}{u_2}\pfrac{u_2}{x} + i\pfrac{f}{v_2}\pfrac{v_2}{x}\\
+\pfrac{f\circ g}{y} &= \pfrac{f}{u_2}\pfrac{u_2}{y} + i\pfrac{f}{v_2}\pfrac{v_2}{y}
+\end{align*}
+Then we can compute the Wirtinger partial derivative $\pfrac{f\circ g}{z}$
+\begin{align*} 
+\pfrac{f\circ g}{z} &= \frac{1}{2}(\pfrac{f\circ g}{x} - i \pfrac{f\circ g}{y})\\
+&= \frac{1}{2}(\pfrac{f}{u_2}\pfrac{u_2}{x} + i\pfrac{f}{v_2}\pfrac{v_2}{x} -  i\pfrac{f}{u_2}\pfrac{u_2}{y} + \pfrac{f}{v_2}\pfrac{v_2}{y})\\
+&= \frac{1}{2}(\pfrac{f}{u_2}(\pfrac{u_2}{x} -i\pfrac{u_2}{y}) + \pfrac{f}{v_2}(i\pfrac{v_2}{x} + \pfrac{v_2}{y}))\\
+&= \frac{1}{2}(\pfrac{f}{u_2}(\pfrac{u_2}{x} -i\pfrac{u_2}{y}) - i\pfrac{f}{v_2}(\pfrac{v_2}{x} - i\pfrac{v_2}{y}))\\
+&= \pfrac{f}{u_2}\pfrac{u_2}{z} - i\pfrac{f}{v_2}\pfrac{v_2}{z}
+\end{align*}
+Let $w(x, y) = u_2(x, y) + iv_2(x, y).$ Then $u_2 = \frac{1}{2}(w + \conj{w})$ and $iv_2 = \frac{1}{2}(w - \conj{w}).$
+
+\begin{align*}
+\pfrac{f\circ g}{z} &= \frac{1}{2}((\pfrac{f}{w} +\pfrac{f}{\conj{w}})\pfrac{u_2}{z} + (\pfrac{f}{\conj{w}} - \pfrac{f}{w})\pfrac{v_2}{z}\\
+&= \frac{1}{2}(\pfrac{f}{w}(\pfrac{u_2}{z} - v\pfrac{v_2}{z}) + \pfrac{f}{\conj{w}}(\pfrac{u_2}{z} + \pfrac{v_2}{z}))\\
+&= \pfrac{f}{w}\pfrac{g}{z} + \pfrac{f}{\conj{w}}\pfrac{\bar{g}}{z}
+\end{align*}
+And by symmetry we can argue that 
+\[
+\pfrac{f\circ g}{\conj{z}} =\pfrac{f}{\conj{w}}\pfrac{\conj{g}}{\conj{z}} + \pfrac{f}{w}\pfrac{g}{\conj{z}}
+\]
+\end{solution}
+
+
+\begin{problem}\label{schwarz-reflection-principle}
+If $f : \C \to \C$ is holomorphic, then $z \mapsto \overline{f(\conj z)}$ is holomorphic.
+\end{problem}
+\begin{solution}
+If $f(x+iy) := u_1(x, y) + iv_1(x, y)$ then $ u_2(x, y) + v_2(x, y) := \conj{f}(x - iy) = u_1(x, -y) - iv_1(x, -y).$ Let's check the equations:
+\begin{align*}
+\pfrac{u_2}{x} &= \pfrac{u}{x} &
+\pfrac{v_2}{x} &= -\pfrac{v}{x}\\
+\pfrac{u_2}{y} &= -\pfrac{v}{y} & 
+\pfrac{v_2}{y} &= \pfrac{v}{y}\\
+\end{align*}
+Using the fact that Cauchy-Riemann equations are satisfied for $f$,
+\begin{align*}
+\pfrac{u_2}{x} &= \pfrac{v_2}{y} & 
+\pfrac{u_2}{y} &= -\pfrac{v_2}{y}
+\end{align*}
+So the claim is true.
+\end{solution}
+
+\begin{problem}\label{cauchy-riemann-alone-not-sufficient}Suppose $u, v : \mathbb{R}^2 \to \mathbb{R}$ satisfy
+  \[
+    \frac{\partial u}{\partial x}(0,0)=\frac{\partial v}{\partial y}(0,0)
+    \mbox{ and }
+    \frac{\partial u}{\partial y}(0,0)=-\frac{\partial v}{\partial x}(0,0).
+  \]
+  Then $f : \C \to \C$ given by $f(x+iy) = u(x,y) + i \, v(x,y)$ is holomorphic at $0$.
+\end{problem}
+\begin{solution}
+False, define $f(z) = \begin{cases}1&\Re(z) = 0 \text{ or } \Im(z) = 0\\ 0 & \text{otherwise}\end{cases}$. It's not holomorphic at 0 since it's not real differentiable there. On the other hand, if $f$ is real differentiable and satisfies the Cauchy Riemann equations, then it must be complex differentiable.
+
+Choose $z = x + iy\in\C$. Then \[f(z) = (f(x + iy) - f(x)) +  (f(x) - f(0)).\] By the MVT we can find points on the line between $x$ to $x+iy$ and the line between $x$ to $0$ with the correct derivative for the functions $u$ and $v$:
+\begin{align*}
+u(z) &= xu_x(p_1) + u_y(p_2)y\\
+v(z) &= xv_x(p_3) +v_y(p_4)y
+\end{align*}
+Since the derivatives are all continuous at 0, and the $p_i$ are close to 0, making $z$ closer to zero allows us to find arbitrarily small $\epsilon_i$ so that 
+\begin{align*}
+u(z) &= (u_x(0)+\epsilon_1)x + (u_y(0)+\epsilon_2)y \\
+v(z) &= (v_x(0)+\epsilon_3)x + (v_y(0)+\epsilon_4)y &= (u_y(0)+\epsilon_5)x + (u_x(0)+\epsilon_6)y
+\end{align*}
+Then we show that the function is complex differentiable by showing the following limit exists:
+\begin{align*}
+\lim_{z\to 0} \frac{f(z)}{z} &= \lim \frac{(u_x(0)+\epsilon_1)x + (u_y(0)+\epsilon_2)y + i((u_y(0)+\epsilon_5)x + (u_x(0)+\epsilon_6)y)}{x+ iy}\\
+&= \lim \frac{u_x(0)(x+iy) + u_y(0)(y-ix) + \epsilon_1x + \epsilon_2y + \epsilon_5x - \epsilon_6y}{x+ iy}\\
+&= \lim \frac{u_x(0)(x+iy) + iu_y(0)(x+iy)}{x+iy} + \lim_{z\to 0} \frac{(\epsilon_1+\epsilon_5)x}{x+iy} + \lim_{z\to 0}\frac{(\epsilon_2 - \epsilon_6)y}{x+ iy}\\
+&= u_x(0) + iu_y(0)
+\end{align*}
+Where the second limit disappears because $\epsilon$ goes to zero along with $z$.
+\end{solution}
+
+\begin{problem}\label{open-mapping-theorem-preview}
+There is a nonconstant holomorphic function with constant absolute value.
+\end{problem}
+\begin{solution}
+False, suppose that $f$ is holomorphic with $|f(z)| = c$. Then $f(x+iy) = u(x, y) + iv(x, y)$ and $u^2 + v^2 = c^2.$ This implies that 
+\begin{align}
+\label{first_abs_omtp} 2uu_x + 2vv_x &= \frac{d}{dx}c^2 = 0\\
+\label{mid_abs_omtp}2uu_y + 2vv_y &= \frac{d}{dx}c^2 = 0\\
+\label{second_abs_omtp} 0 &= -2uv_x + 2vu_x \color{purple} \quad\text{ apply CR equations to \ref{mid_abs_omtp}}
+\end{align}
+Multiplying \ref{first_abs_omtp} by $v$ and \ref{second_abs_omtp} by $u$,
+\begin{align*}
+2uvu_x + 2v^2v_x &= -2u^2v_x + 2vuu_x\\
+2v^2v_x &= -2u^2v_x\\
+2(v^2 +u^2) v_x &= 0\\
+c^2v_x &= 0
+\end{align*}
+If $c^2=0$, then $f$ is constant (as $|f(z)|=c=0$ everywhere), and otherwise $v_x$ (and $u_x$ if we do the last step after multiplying \ref{second_abs_omtp} by $-u$ instead) are 0. Using the Cauchy Riemann equations, this implies that all of the derivatives are 0, so $f$ is constant.
+\end{solution}
+\begin{problem}\label{schwarzian-derivative}For $f : \mathbb{C} \to \mathbb{C}$, the \textbf{Schwarzian derivative} of $f$ is
+  \[ (Sf)(z)=\left({\frac{f''(z)}{f'(z)}}\right)'-{\frac12}\left(\frac{f''(z)}{f'(z)}\right)^2={\frac {f'''(z)}{f'(z)}}-{\frac32}\left(\frac{f''(z)}{f'(z)}\right)^2. \]
+  If $f$ is a M\"obius transformation, then $(Sf)(z) = 0$.
+\end{problem}
+\begin{solution}
+In the definition, $f$ should be holomorphic as well, so that the notation $f'(z)$ makes sense.
+
+Let $f=\frac{az + b}{cz + d},$ and we can try to compute $Sf$. First let's find $f'$ using the quotient rule:
+\begin{align*}
+f' &= \frac{(cz + d)a - (az + b)c}{(cz + d)^2}\\
+&= \frac{da - bc}{(cz + d)^2}
+\end{align*}
+When we find the logarithmic derivative, the constant $(da - bc)$ will disappear, making the next computation a bit better:
+\begin{align*}
+\frac{f''}{f'} &= \frac{-2(cz + d)}{(cz+d)^4} / \frac{1}{(cz+d)^2}\\
+&= \frac{-2}{cz + d}
+\end{align*}
+For the final term:
+\begin{align*}
+(\frac{f''}{f'})' = \frac{-2}{(cz + d)^2}
+\end{align*}
+Now we can plug into the equation and quickly see that the value is in fact 0.
+\begin{align*}
+Sf(z) &= \left({\frac{f''(z)}{f'(z)}}\right)'-{\frac12}\left(\frac{f''(z)}{f'(z)}\right)^2\\
+&= \frac{-2}{(cz + d)^2} - \frac{1}{2}(\frac{-2}{cz + d})^2
+&= 0
+\end{align*}
+\end{solution}
+\end{document}
+

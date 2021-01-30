@@ -1,4 +1,4 @@
-all: sol1.pdf
+all: sol1.pdf sol2.pdf
 
 %.pdf: %.tex
 	pdflatex $<
