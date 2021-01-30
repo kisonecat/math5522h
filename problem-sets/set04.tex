@@ -3,24 +3,131 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+Some of the most important results (e.g. Cauchy's theorem) are so surprising at first sight that nothing short of a proof can make them credible.
+\byline{Sir Harold Jeffreys} % and where is this quotation from?
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  What is a \textbf{Jordan curve}?
+\end{problem}
+
+\begin{problem}
+  Define the \textbf{winding number} $n(\gamma,z)$ of a piecewise
+  smooth closed curve $\gamma$ around a point $z \in \C$.
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem} Compute the \textbf{Fresnel integrals}
+  \[
+    \int_0^\infty \sin \left( x^2 \right) \, dx \mbox{ and } \int_0^\infty \cos \left( x^2 \right) \, dx.
+  \]
+\end{problem}
+
+\begin{problem}
+  For an integrable function $f : \R \to \C$, define the
+  \textbf{Fourier transform} of $f$, denoted $\hat{f}$, by
+  \[
+    {\hat {f}}(\xi ) := \int _{-\infty }^{\infty} f(x) \, e^{-2\pi ix \xi} \,dx.
+  \]
+  Find the Fourier transform of $f(x) = e^{-\pi x^2}$.
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  Does the function $f : \C \to \C$ given by $f(z) = \conj{z}$ have a
+  primitive?
+\end{problem}
+
+\begin{problem}
+  We proved Goursat's theorem for rectangles.  Without simply
+  recapitalulating the proof (e.g., your argument should not again
+  invoke \ref{nested-subsets-convergence}), deduce a theorem for
+  \textit{triangles} from our result about rectangles.
+\end{problem}
+
+\begin{problem}
+  Suppose $f, g : \C \to \C$ are holomorphic and agree on the unit
+  circle.  How do $f$ and $g$ relate?  \textit{Hint:} Use a salvaged
+  version of \ref{cauchy-integral-formula}.  Morally, this problem is
+  related to \ref{identity-theorem}.
+\end{problem}
+
+ \begin{problem}
+   Suppose $f : \C \to \C$ is holomorphic, and consider the circle
+   $\gamma$ with center $z_0$.  How does the real part of the average
+   value of $f$ on the circle $\gamma$ relate to $f(z_0)$?
+ \end{problem}
+
+ \begin{problem}
+   Recalling \ref{harmonic-conjugate}, suppose $u, v : \C \to \R$ are
+   harmonic functions and $f = u + iv$ is holomorphic, so $u$ and $v$
+   are harmonic conjugates.  Find the \textbf{Poisson kernel} for the
+   unit disc, i.e., a function $P_r(\theta)$ so that
+   \[
+     u(re^{i\theta })={\frac {1}{2\pi }}\int _{-\pi }^{\pi }P_{r}(\theta -t)\, u(e^{it})\,dt.
+   \]
+   for $r < 1$.
+ \end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+\begin{problem}
+  Suppose $D = \{ z \in \C : \abs{z} < 1 \}$ and $f : D \to \C$ is
+  continuous and $\gamma : [a,b] \to D$ is a piecewise smooth curve.
+  Then $\displaystyle\int_\gamma f\, dz = 0$.
+\end{problem}
+  
+\begin{problem}
+  Suppose $U$ is an open set and $f : U \to \C$ is analytic and
+  $\gamma : [a,b] \to U$ is a piecewise smooth curve.  Then
+  $\displaystyle\int_\gamma f\, dz = 0$.
+\end{problem}
+
+\begin{problem}
+  Define $\gamma_r : [0,2\pi] \to \C$ by
+  $\gamma_r(\theta) = r e^{i \theta}$, and for real numbers
+  $R > r > 0$, define the annulus
+  \[
+    A(r,R) := \{ z \in \C : r < |z| < R \}
+  \]
+  and suppose $f : A(r/2,2R) \to \C$ is holomorphic.  Then
+  \[
+    \int_{\gamma_r} f \, dz = \int_{\gamma_R} f \, dz.
+  \]
+\end{problem}
+
+\begin{problem}\label{cauchy-integral-formula}Define $B_R(0) := \{ z \in C : \abs{z} < R \}$ and suppose
+  $f : B_R(0) \to \C$ is holomorphic and let $\gamma$ be the
+  positively-oriented circle of positive radius $r < R$.  Then
+  \[
+    f(a) = \int_\gamma \frac{f(z)}{z-a} \, dz.
+  \]
+  This is the Cauchy integral formula.
+\end{problem}
+
+\begin{problem}
+  Just as in \ref{cauchy-integral-formula}, we have
+  \[
+    f'(a) = \int_\gamma \frac{f(z)}{(z-a)^2} \, dz.
+  \]
+\end{problem}
+
+\begin{problem}\label{liouville-theorem}Recall that a function $f : U \to \C$ is
+  \textbf{bounded} if there exists $M > 0$ so that for all $z \in U$
+  we have $\abs{f(z)} \leq M$.  A bounded holomorphic function
+  $f : U \to \C$ is constant.
+\end{problem}
+
+\begin{problem}
+  For every polynomial $p \in \C[z]$ there is $z \in \C$ so that $p(z) = 0$.
+\end{problem}
 
 \end{document}
