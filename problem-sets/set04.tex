@@ -55,8 +55,7 @@ Some of the most important results (e.g. Cauchy's theorem) are so surprising at 
 
 \begin{problem}
   Suppose $f, g : \C \to \C$ are holomorphic and agree on the unit
-  circle.  How do $f$ and $g$ relate?  \textit{Hint:} Use a salvaged
-  version of \ref{cauchy-integral-formula}.  Morally, this problem is
+  circle.  How do $f$ and $g$ relate?  Morally, this problem is
   related to \ref{identity-theorem}.
 \end{problem}
 
@@ -70,9 +69,9 @@ Some of the most important results (e.g. Cauchy's theorem) are so surprising at 
    Recalling \ref{harmonic-conjugate}, suppose $u, v : \C \to \R$ are
    harmonic functions and $f = u + iv$ is holomorphic, so $u$ and $v$
    are harmonic conjugates.  Find the \textbf{Poisson kernel} for the
-   unit disc, i.e., a function $P_r(\theta)$ so that
+   unit disc, i.e., find a function $P_r(\theta)$ so that
    \[
-     u(re^{i\theta })={\frac {1}{2\pi }}\int _{-\pi }^{\pi }P_{r}(\theta -t)\, u(e^{it})\,dt.
+     u(re^{i\theta}) = \frac {1}{2\pi} \int_{-\pi }^{\pi } P_{r}(\theta -t) \, u(e^{it}) \, dt
    \]
    for $r < 1$.
  \end{problem}
@@ -88,7 +87,7 @@ Some of the most important results (e.g. Cauchy's theorem) are so surprising at 
 \begin{problem}
   Suppose $U$ is an open set and $f : U \to \C$ is analytic and
   $\gamma : [a,b] \to U$ is a piecewise smooth curve.  Then
-  $\displaystyle\int_\gamma f\, dz = 0$.
+  $\displaystyle\int_\gamma f \, dz = 0$.
 \end{problem}
 
 \begin{problem}
@@ -110,15 +109,22 @@ Some of the most important results (e.g. Cauchy's theorem) are so surprising at 
   \[
     f(a) = \int_\gamma \frac{f(z)}{z-a} \, dz.
   \]
-  This is the Cauchy integral formula.
-\end{problem}
-
-\begin{problem}
-  Just as in \ref{cauchy-integral-formula}, we have
+  and moreover
   \[
     f'(a) = \int_\gamma \frac{f(z)}{(z-a)^2} \, dz.
-  \]
+  \]  
 \end{problem}
+
+\begin{problem}\label{cauchy-inequalities}If $f : U \to \C$ is
+  holomorphic and $U \supset B_r(z_0)$, then
+  \[
+     \abs{f(z_0)} \leq \sup_{z \in \partial B_r(z_0)} \abs{f(z)}
+   \]
+   and
+   \[
+     \abs{f'(z_0)} \leq \sup_{z \in \partial B_r(z_0)} \abs{f(z)}. % missing (1/r) factor
+   \]
+ \end{problem}
 
 \begin{problem}\label{liouville-theorem}Recall that a function $f : U \to \C$ is
   \textbf{bounded} if there exists $M > 0$ so that for all $z \in U$
