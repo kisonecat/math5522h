@@ -3,24 +3,145 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+  On April 9, 1975, Congressman Robert Michel brandished a list of new
+  NSF grants on the floor of the House of Representatives and selected
+  a few that he thought might represent a waste of the taxpayers'
+  money. One of them \ldots was called ``Studies in Complex
+  Analysis. Michel's comment was, `` `Simple Analysis' would,
+  hopefully, be cheaper.''
+  \byline{Gerald B. Folland} % the American Mathematical Monthly (vol 780, Oct 1998, pg. 780)
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  What is a \textbf{simply-connected} domain?
+\end{problem}
+
+\begin{problem}
+  What does it mean to say that two curves $\alpha$ and $\beta$ are
+  \textbf{homologous}?
+\end{problem}
+
+\begin{problem}
+  What is a \textbf{null homotopic} path?
+\end{problem}
+
+\begin{problem}
+  Given a function $f : U \to \C$, what is meant by a \textbf{branch} of the log of $f$?
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}
+  Evaluate $\int_0^\infty \frac{\sin x}{x} \, dx$.  This is the
+  \textbf{Dirichlet integral.}
+\end{problem}
+
+\begin{problem}
+  Define $\gamma : [0,2\pi] \to \C$ by $\gamma(\theta) = e^{i\theta}$.
+  Suppose $p \in \C[z]$ is a degree $n$ polynomial with distinct roots
+  $z_1,\ldots,z_n$ in the unit disk, and evaluate
+  \[
+    \int_\gamma \frac{z^m \, p'(z)}{p(z)} \, dz.
+  \]
+\end{problem}
+
+\begin{problem}
+  Again define $\gamma : [0,2\pi] \to \C$ by
+  $\gamma(\theta) = e^{i\theta}$, and then evaluate
+  \[
+    \int_\gamma \frac{\conj{w}}{w - z} \, dw
+  \] for $z \in \C$ with $\abs{z} < 1$.
+\end{problem}
+
+\begin{problem}
+  Consider subsets of the real line $A = (-\infty,-1] \cup [1,\infty)$
+  and $B = [-1,1]$.  Is it possible to define a branch of the
+  logarithm of $z^2 - 1$ on $\C \setminus A$?  What about on
+  $\C \setminus B$?
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  If we can find a branch of log $f$, then we can define a
+  single-valued $\sqrt{f(z)}$ via $e^{(1/2) \, \log f}$.  Does the
+  converse hold?  Find an open set $U \subset \C$ and a holomorphic
+  function $f : U \to \C$ so that there is \textit{no} branch of log
+  of $f$, but it is nevertheless possible to define a single-valued
+  $\sqrt{f(z)}$.
+\end{problem}
+
+\begin{problem}
+  Liouville's theorem (\ref{liouville-theorem}) states that a
+  nonconstant holomorphic function $f : \C \to \C$ is not bounded.
+  Seeing \ref{entire-is-dense}, we might ask how ``small'' can the
+  image of holomorphic function be.  Find a holomorphic function
+  $f : \C \to \C$ with image equal to $\C \setminus \{w\}$.
+  (Incidentally, by \textbf{Picard's little theorem}, you will have
+  trouble finding an entire function with image missing two points.)
+\end{problem}
+
+\begin{problem}\label{cauchy-inequalities-2}Suppose
+  $f(z) = \sum_{n=0}^\infty a_n z^n$ is holomorphic in the disk
+  $B_R(0)$.  If $0 < r < R$, show that
+  \[
+    \abs{a_n} \leq \frac{1}{r^n} \displaystyle\sup_{z \in \partial B_r(0)} \abs{f(z)}.
+  \]
+  This extends \ref{cauchy-inequalities}.
+\end{problem}
+
+\begin{problem}
+  Consider a nonconstant polynomial $p \in \mathbb{C}[z]$ of degree $n$.  Compute
+  \[
+    \lim_{r \to \infty} \int_{\partial B_r(0)} \left( \frac{p'(z)}{p(z)} - \frac{n}{z} \right) dz.
+  \]
+  Can you perform this computation \textit{without} appealing to the
+  fundamental theorem of algebra?
+\end{problem}
+
+\begin{problem}\label{uniformly-approximate-conj}For $\epsilon > 0$, is there a polynomial $p \in \mathbb{C}[z]$ so
+  that $\abs{p(z) - \conj{z}} < \epsilon$ for $z \in B_1(0)$?  In
+  other words, can we uniformly approximate $\conj{z}$ by a polynomial
+  in $z$?
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
 
+\begin{problem}\label{entire-is-dense}If $f : \C \to \C$ is
+  holomorphic, then the image of $f$ is dense in $\C$.
+\end{problem}
+
+\begin{problem}\label{identity-dominate-entire}Suppose $f : \C \to \C$
+  is holomorphic and for all $z \in \C$ we have
+  $\abs{f(z)} \leq \abs{z}$.  Then $f(z) = \lambda z$ for some
+  $\lambda \in \C$.
+\end{problem}
+
+\begin{problem}
+  There is a nonconstant holomorphic function $f : \C \to \C$ so that
+  for all $n \in \Z$ we have $f(z + n) = f(z)$.  (Such a function is
+  \textbf{periodic}.)
+\end{problem}
+
+\begin{problem}\label{doubly-periodic}There is a nonconstant holomorphic function $f : \C \to \C$ so that
+  for all $\omega \in \Z[i]$ we have $f(z + \omega) = f(z)$.  (Such a
+  function is \textbf{doubly periodic}.)
+\end{problem}
+
+\begin{problem}\label{maximum-modulus-principle}Consider a connected open subset $U \subset \C$ and a holomorphic
+  function $f : U \to \C$.  If there is a point $z_0 \in U$ so that
+  for all $z \in U$ we have $\abs{f(z_0)} \geq \abs{f(z)}$, then $f$
+  is constant.  \textit{Hint:} show that $g(z) = \abs{f(z)}$ is
+  constant and invoke \ref{open-mapping-theorem-preview}.  This is the
+  \textbf{maximum modulus principle}.
+\end{problem}
+
+
 \end{document}
+
