@@ -11,16 +11,139 @@
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+  \textit{Logic sometimes makes monsters.} For half a century we have
+  seen a mass of bizarre functions which appear to be forced to
+  resemble as little as possible honest functions which serve some
+  purpose. More of continuity, or less of continuity, more
+  derivatives, and so forth.
+  \byline{Henri Poincar\'e} % can someone find the actual reference for this?!
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  What is meant by uniform convergence on compact sets?
+\end{problem}
+
+\begin{problem}
+  What is a biholomorphism $f : U \to V$?
+\end{problem}
+
+\begin{problem}
+  Define \textbf{star-convex}.
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}\label{max-modulus-numerical}
+  Consider $f(z) = 4z - (2z - i)^2 - 2i - 4$.  Find $z$ in 
+  \[
+    \{ x + iy \in \C : 0 \leq x \leq 1 \mbox{ and } 0 \leq y \leq 1 \}
+  \]
+  maximizing $\abs{f(z)}$.
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  Sometimes things are \textit{much} better in the complex case than
+  the real case.  Find a sequence of smooth functions
+  $f_n : [-1,1] \to \R$ converging uniformly to $f(x) = \abs{x}$ which
+  is not differentiable at zero.  Can the uniform limit of holomorphic
+  functions fail to be holomorphic?
+\end{problem}
+
+\begin{problem}\label{hadamard-three-lines}Prove \textbf{Hadamard's
+    three-lines theorem} which is about the strip
+  \[
+    S_{a,b} := \{ x+iy \in \C : a \leq x \leq b\}
+  \]
+  bounded by two horizontal lines, i.e., the line with real part $a$
+  and the line with real part $b$.  Suppose $f : S_{a,b} \to \C$ is a
+  bounded continuous function which is holomorphic on the interior of
+  $S_{a,b}$.  Define $M : [a,b] \to \R$ by
+  \[
+    M(x) := \sup_{y \in \R} \abs{f(x+iy)},
+  \]
+  that is, $M(x)$ is the supremum of $\abs{f}$ on the (third!) line with real part $x$.
+  
+  Show that, if $t \in [0,1]$, then \(M\left( ta + (1-t)b \right) \leq M(a)^t M(b)^{1-t}\).
+\end{problem}
+
+\begin{problem}\label{schwarz-lemma}Suppose $f : B_1(0) \to B_1(0)$ is holomorphic and $f(0) = 0$.  Show
+  that $\abs{f(z)} \leq \abs{z}$ for all $z \in B_1(0)$.  How large
+  could $\abs{f'(0)}$ be?  This is the \textbf{Schwarz lemma}.
+\end{problem}
+
+\begin{problem}\label{schwarz-lemma-2}Suppose again that $f : B_1(0) \to B_1(0)$ is holomorphic, and
+  suppose further that $\abs{f(z)} = \abs{z}$ for some nonzero
+  $z \in \C$.  Show that $f$ must be a rotation, i.e., there is some
+  $\lambda \in \C$ with $\abs{\lambda} = 1$ and $f(z) = \lambda z$.
+  (This is also the Schwarz lemma.)
+\end{problem}
+
+\begin{problem}\label{schwarz-lemma-3}Suppose that
+  $f : B_1(0) \to B_1(0)$ is holomorphic and $\abs{f'(0)} = 1$.  What
+  can you deduce about $f$?
+\end{problem}
+
+\begin{problem}\label{schwarz-reflection-principle-2}Consider the
+  closed upper half-plane
+  \[
+    H := \{ x + iy \in \C : x \in \R \mbox{ and } y \geq 0 \}.
+  \]
+  Suppose $f : H \to \C$ is continuous, holomorphic on the interior of
+  $H$, and sends reals to reals, i.e., if $x \in \R$ then
+  $f(x) \in \R$.  Use a trick like \ref{schwarz-reflection-principle}
+  to describe an entire function agreeing with $f$ on its domain.
+\end{problem}
+
+\begin{problem}
+  Combine \ref{cayley-transform} and
+  \ref{schwarz-reflection-principle-2} to explore a similar situation
+  for the unit disk.  Specifically, consider the closed disk
+  \[
+    D := \{ z \in \C : \abs{z} \leq 1 \},
+  \]
+  and suppose $f : D \to \C$ is continuous, holomorphic on the
+  interior of $D$, and sends boundary to boundary, i.e., if
+  $z \in \partial D$ then $f(z) \in \partial D$.  What consequence can
+  you deduce from the entire function you just produced?
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+\begin{problem}\label{cauchy-for-starlike}Suppose $U \subset \C$ is a
+  star-convex open set, and $f : U \to \C$ is holomorphic, and
+  $\gamma : [0,1] \to U$ is a smooth closed curve.  Then
+  \[
+    \int_\gamma f(z) \, dz.
+  \]
+\end{problem}
+
+\begin{problem}\label{moreras-theorem}If a function $f : B_r(0) \to \C$
+  satisfies % missing continuous!
+  \[
+    \int_\gamma f(z) \, dz = 0
+  \]
+  for all piecewise smooth closed curves $\gamma$ in the disk
+  $B_r(0)$, then $f$ is holomorphic.
+\end{problem}
+
+\begin{problem}\label{uniform-convergence-holomorphic}If the sequence of
+  holomorphic functions $f_n : U \to \C$ converge pointwise to
+  $f : U \to \C$, then $f$ is holomorphic.
+\end{problem}
+
+\begin{problem}\label{automorphisms-of-disk}Suppose $f, g : B_r(0) \to B_r(0)$ are holomorphic and
+  $f \circ g = g \circ f$ are the identity on $B_r(0)$.  Then there is
+  $w \in B_r(0)$ and $\theta \in [0,2\pi)$ with
+  \[
+    f(z) = e^{i\theta} \cdot \frac{w - z}{1 - \conj{w}z}.
+  \]
+  This should remind you of \label{blaschke-factors}.  This result
+  highlights the rigidity of biholomorphic functions as compared to,
+  say, homeomorphisms.
+\end{problem}
 
 \end{document}
