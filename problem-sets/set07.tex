@@ -3,24 +3,96 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
+\DeclareMathOperator{\polylog}{Li}
+\newcommand{\dilog}{\polylog_2}
 
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+    Music is nothing but ratios and harmonic math, anyways.
+\byline{Andrew Sega}
 \end{inspiration}
+
+With this being a ``short'' week because of the instructional break,
+this problem set is concomitantly shorter.
 
 \section{Terminology}
 
+\begin{problem}
+  What is a harmonic function?
+\end{problem}
+
+\begin{problem}
+  Define the term \textbf{harmonic conjugate}.  (Recall \ref{harmonic-conjugate}.)
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}\label{relate-fourier-and-taylor-series}Let $S^1 := \{(x,y) \in \R^2 : x^2 + y^2 = 1 \}$ and $D_1(0) := \{ (x,y) \in \R^2 : x^2 + y^2 \leq 1 \}$.  Find a continuous function $F : D_1(0) \to \R$ that is harmonic on the interior of $D_1(0)$ and that extends
+  $f : S^1 \to \R$ given by
+ \[
+   f(\cos \theta,\sin \theta) = \sum_{k=0}^N \left(c_k \, \cos \left( k\theta \right) + s_k \, \sin \left( k \theta \right) \right).
+ \]
+ (This problem encourages you to relate Fourier series and Taylor series.)
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  Recall \ref{where-converge-one-over-n}.  Consider the power series for the \textbf{dilogarithm} function,
+  \[
+    \dilog(z) = \sum_{n=1}^\infty \frac{z^n}{n^2}.
+  \]
+  What is its radius $r$ of convergence?  Where on the boundary of
+  $B_r(0)$ does this series converge?  (Note that there is no pole on
+  the boundary; not every singularity is a pole!)
+\end{problem}
+
+\begin{problem}\label{laplacian-via-wirtinger}Consider an open set
+  $U, V \subset \C$ and a holomorphic function $f : U \to \C$.  Write
+  the \textbf{Laplacian}
+  \[
+    \Delta := \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} 
+  \]
+  in terms of the mixed Wirtinger derivative
+  $\displaystyle\frac{\partial^2}{\partial z \partial \conj{z}}$.
+\end{problem}
+
+\begin{problem}\label{composition-holomorphic-harmonic}Consider open
+  sets $U, V \subset \C$ and a holomorphic function $f : U \to V$ and
+  a harmonic function $g : V \to \R$.  Is the composition $g \circ f$
+  a harmonic function on $V$?
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
 
+\begin{problem} % wrong sign
+  If $f : U \to \R$ is a harmonic function on an open set $U \subset \R^2$, then 
+  \[
+    F(x+iy) := f_x(x,y) + i f_y(x,y) 
+  \]
+  defines a holomorphic function $F : U \to \C$, regarding $U$ as an
+  open subset of $\C$.
+\end{problem} 
+
+\begin{problem}\label{maximum-principle}For an open set
+  $U \subset \R^2$ and a harmonic function $f : U \to \R$, the
+  function $f$ does not achieve a maximum. % nonconstant missing
+\end{problem}
+
+\begin{problem}\label{universal-taylor-series}Suppose
+  $\displaystyle\sum_{n=0}^\infty a_n z^n$ is a power series with
+  radius of convergence 1.  We say that series is \textbf{universal}
+  if, for every $\epsilon > 0$ and $\delta > 0$, for every closed disk
+  $D_r(a)$ with $\abs{a-1} > r$, for every holomorphic function
+  $f : B_{r + \delta}(a) \to \C$, there exists $N$ so that
+  \[
+    \sup_{z \in D_r(a)} \abs{ f(z) - \sum_{n=0}^N a_n z^n } < \epsilon.
+  \]
+
+  There is a universal power series.
+\end{problem}
+
 \end{document}
+
