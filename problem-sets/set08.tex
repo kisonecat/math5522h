@@ -3,24 +3,138 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+It is singularity which often makes the worst part of our suffering.\\
+\byline{Jane Austen}, not talking about this problem set.
 \end{inspiration}
 
 \section{Terminology}
 
+This week, there is a lot of new terminology to classify the various
+sorts of singularities we might encounter.  For full credit, be sure
+to give careful precise definitions.
+
+\begin{problem}
+  What is an \textbf{isolated singularity}?
+\end{problem}
+
+\begin{problem}
+  What is meant by the \textbf{order} (or \textbf{multiplicity}) of a zero?  Of a pole?
+\end{problem}
+
+\begin{problem}
+  What is a \textbf{removable singularity}?
+\end{problem}
+
+\begin{problem}
+  What does it mean to say that a function $f : \C \to \C$ has a zero of order $n$ at infinity?  Has a pole of order $n$ at infinity?  
+\end{problem}
+
+\begin{problem}
+What is a \textbf{meromorphic function}?
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}
+  Let $f(z) = e^{z \sin^2 z} - 1$.  What is the order of the zero at $z = 0$?
+\end{problem}
+
+\begin{problem}
+  Let $f(z) = \left( \cos z \right) - 1 - z^2/2$, and compute
+  \[
+    \int_\gamma \frac{f'(z)}{f(z)} \, dz
+  \]
+  for $gamma : [0,2\pi]$ given by $\gamma(\theta) = e^{i\theta}$.
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  Explain the topology on $\mathbb{C} \cup \{ \infty \}$, the \textbf{Riemann sphere}.
+\end{problem}
+
+\begin{problem}\label{jordans-lemma}
+  Prove \textbf{Jordan's lemma}; next week, this lemma will help us estimate integrals over the contour $\gamma : [0,\pi] \to \C$ given by $\gamma(\theta) = re^{i\theta}$.
+  Specifically, show that if $a > 0$, then
+  \[
+    \abs{\int_\gamma e^{iaz} \, g(z) \, dz } \leq \frac{\pi}{a} \sup_{\theta \in [0,\pi]} \abs{g(\gamma(\theta))}.
+    \]
+\end{problem}
+
+\begin{problem}\label{riemann-removable-singularity}
+  For an open set $U \ni z_0$, suppose
+  $f : U \setminus \{z_0\} \to \C$ is holomorphic.  Show that
+  $\lim_{z\to z_0} (z-z_0)f(z)=0$ if and only $f$ extends to a
+  holomorphic function $F : U \to \C$.
+\end{problem}
+
+\begin{problem}\label{idempotent-entire}Describe holomorphic functions
+  $f : \C \to \C$ with the property that $f(f(z)) = f(z)$ for all
+  $z \in \C$.
+\end{problem}
+
+\begin{problem}
+  Suppose $U$ is a disk and $f : U \to \C$ is holomorphic with
+  finitely many zeros, and repeatedly invoke \ref{factor-theorem} to
+  explain why you can find $z_1,z_2,\ldots,z_n \in \C$ and write
+  \[
+    f(z) = (z-z_1)(z-z_2) \cdots (z-z_n) \, g(z)
+  \]
+  for a nowhere-vanishing analytic function $g : U \to \C$.
+\end{problem}
+
+\begin{problem}\label{argument-principle-zeros}
+  Continuing as above, compute $f'(z)/f(z)$ in terms of $z_1,z_2,\ldots,z_n \in \C$ and $g'(z)/g(z)$, and evaluate
+  \[
+    \frac{1}{2\pi i} \int_\gamma \frac{f'(z)}{f(z)} \, dz
+  \]
+  in terms of the winding numbers $n(\gamma,z_j)$.
+\end{problem}
+
+\begin{problem}
+  Let's justify the terminology that a ``zero of multiplicity $n$''
+  really means there are $n$ solutions to a certain equation.  Suppose
+  the holomorphic function $f : B_1(0) \to \C$ has a zero of order $n$
+  at zero, i.e., suppose $f(z) = z^n g(z)$ for a holomorphic
+  $g : B_1(0) \to \C$ with $g(0) \neq 0$.  For all sufficiently small
+  $\epsilon > 0$, find $\delta > 0$ so that for all
+  $w \in B_\epsilon(0) - \{0\}$, the set
+  $f^{-1}(\{w\}) \cap B_\delta(0)$ consists of $n$ elements.
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+\begin{problem}\label{factor-theorem}
+  Suppose $U \subset \C$ is open, and $f : U \to \C$ is analytic, and for some $z_0 \in U$, we have $f(z_0) = 0$.  Then there is a positive $m \in \Z$ so that
+  \[
+    g(z) := \frac{f(z)}{(z-z_0)^m}
+  \]
+  yields an analytic function $g : U \to \C$ which does not vanish at $z_0$.
+\end{problem}
+
+\begin{problem}\label{entire-dominate-entire}Suppose $f, g : \C \to \C$ are holomorphic and for all $z \in \C$ we have $\abs{f(z)} \leq \abs{g(z)}$.  In this case, we say that $g$ dominates $f$.  Then $f(z) = \lambda \cdot g(z)$ for some $\lambda \in \C$.  (Compare \ref{identity-dominate-entire}.)
+\end{problem}
+
+\begin{problem}
+  If $f : \C \to \C$ has a pole of order $n$ at infinity, then $f$ is a polynomial of degree at most $n$.
+\end{problem}
+
+\begin{problem}\label{casorati-weierstrass}
+  Suppose $f : U \setminus \{ z_0 \} \to \C$ is holomorphic with an essential singularity at $z_0 \in U$.  If $V \subset U$ is a neighborhood of $z_0$, then $f(V \setminus \{ z_0 \})$ is dense in $\C$.
+\end{problem}
+
+\begin{problem}
+  There exists a holomorphic function $f : \C \to \C$ so that both $f$
+  and $z \mapsto e^{f(z)}$ have poles at zero.
+\end{problem}
+
+\begin{problem}
+  There exists a nowhere-vanishing holomorphic function
+  $f : \C \to \C$ such that $\lim_{z \to \infty} f(z) = \infty$.
+\end{problem}
 
 \end{document}
