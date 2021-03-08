@@ -2,25 +2,146 @@
 \course{Math 5522H}
 \author{Jim Fowler}
 \input{preamble}
-
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
+\DeclareMathOperator{\Res}{Res}
 
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+  Luck is the residue of design
+  \byline{Branch Rickey}
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  Define the \textbf{residue} of $f$ at the point $z$, which we write $\Res(f,z)$.
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}
+  Evaluate $\Res(f,z)$ for the function $f(z) = \displaystyle\frac{e^z}{z^2-1}$.
+\end{problem}
+
+\begin{problem}\label{residues-all-one}Evaluate $\Res(f,z)$ for the
+  function $f(z) = \pi \cot (\pi z)$.
+\end{problem}
+
+\begin{problem}\label{residue-coth}Compute $\Res(f,\pm bi)$ for the
+  function
+  \[
+    f(z) = \frac{\pi \cot(\pi z)}{z^2 + b^2}.
+  \]
+\end{problem}
+
+\begin{problem}
+  Evaluate the integrals
+  \[
+    \int_{-\infty}^\infty \frac{\sin x}{1+x^2} \, dx \mbox{ and }
+    \int_{-\infty}^\infty \frac{\cos x}{1+x^2} \, dx.
+  \]
+\end{problem}
+
+\begin{problem}
+  For a real number $\lambda \in (0,1)$, evaluate
+  \[
+    \int_{-\infty}^\infty \frac{e^{\lambda x}}{1 + e^x} \, dx.
+  \]
+\end{problem}
+
+\begin{problem}
+  Evaluate the integral $\displaystyle\int_{0}^{2\pi} \frac{1}{3 + \sin^2 x} \, dx$.
+\end{problem}
+
+\begin{problem}
+  Evaluate the integral $\displaystyle \int_0^\pi \log \sin x \, dx$.
+\end{problem}
+
+\begin{problem}
+  Evaluate the integral $\displaystyle\int_{-\infty}^{\infty} \frac{1-x}{1-x^7} \, dx$.
+\end{problem}
+
+\begin{problem}
+  Show that $f(z) = z^5 + 15z - 1$ has five zeros in $B_2(0)$, and one zero in $B_{1/15}(0)$.
+\end{problem}
+
+\begin{problem}\label{form-at-infinity}Set $w = 1/z$ and compute $f(w) \, dw$ in terms of $f(z) \, dz$.
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  Fix $w \in \R$ with $w>0$.  By the intermediate value theorem, the
+  polynomial $f(z) = z^4 + 4w^3 z - 1$ has a real root in the interval
+  $(-\infty,0)$ and another in $(0,1)$, along with two complex roots
+  $a \pm bi$.  Use Gauss-Lucas (\ref{gauss-lucas}) and Rouch\'e's
+  (\ref{rouches-theorem}) theorem to describe a subset of $\C$
+  containing $a\pm bi$.
+\end{problem}
+
+\begin{problem}
+  What is the correct definition of $\Res(f,\infty)$?  Generally, we
+  would shift the viewport by replacing $f$ with the function
+  $g(z) = f(1/z)$ and then we study $g$ near $z = 0$ in order to
+  investigate ``$f$ near $\infty$.''  Does \ref{form-at-infinity} help
+  here?
+\end{problem}
+
+\begin{problem}\label{rouches-theorem}Suppose $U$ is an open set containing the closed disk $D_r(z_0)$ and
+  $f, g : U \to \C$ are holomorphic functions satisfying
+  \[
+    \abs{f(z)} > \abs{g(z)}
+  \]
+  for $z \in \partial D_r(z_0)$.  Prove \textbf{Rouch\'e's theorem}
+  that $f$ and $f+g$ have the same number of zeros, counted with
+  multiplicity, in $B_r(z_0)$.  (This is sometimes called the dog
+  leash theorem---can you see why?)
+\end{problem}
+
+\begin{problem}
+  Use \ref{rouches-theorem} to give another proof of the Fundamental Theorem of Algebra.
+\end{problem}
+
+\begin{problem}
+  It is important to recognize patterns in how residues equip us to evaluate integrals, so that, when presented with a fresh integration problem, we have some ideas about the best tool for the task.  Develop a tool for evaluating
+  \[
+    \int_0^{2\pi} f(\cos \theta,\sin \theta) \, d\theta
+  \]
+  via residues.  Here $f$ is a rational function, explain how to make
+  the substitution $z = e^{i\theta}$ to rewrite
+  $f(\cos \theta,\sin \theta)$ in terms of $z$, and
+  similarly rewrite $d\theta$ in terms of
+  $dz$ to reduce the given integral to a certain contour integral.
+\end{problem}
+
+\begin{problem}\label{summation-theorem}Sometimes the residue calculus
+  permits us to sum series.
+
+  Suppose $f$ is meromorphic with poles $z_1,\ldots,z_N$ with $z_j \not\in \Z$.  Our goal is a formula
+  \[
+    \sum_{n=-\infty}^{\infty} f(n) = - \sum_{j=1}^N \Res(g, z_j)
+  \]
+  where $g(z) = \pi \cot(\pi z) f(z)$.  \textit{Hint:} Consider a square contour $R$ centered at the origin with side-length $2N+1$.  You may assume that $\pi \cot(\pi z)$ is bounded on $R$ independent of $N$.  You will then need to impose some bound on $f$ on the contour $R$.
+\end{problem}
+
+\begin{problem}
+  Apply \ref{residue-coth} and \ref{summation-theorem} to evaluate
+  \[
+    \sum_{n=-\infty}^\infty \frac{1}{n^2 + b^2}.
+  \]
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+\begin{problem}\label{zero-residue-not-enough}Suppose $f : D_r(z_0) \to \C$ is holomorphic.  The residue
+  $\Res(f,z_0)$ vanishes if and only if the singularity $z_0$ is
+  removable.
+\end{problem}
+
+\begin{problem}\label{open-mapping-theorem}If $U \subset \C$ is open
+  and $f : U \to \C$ is holomorphic, then $f(U)$ is
+  open. % missing nonconstant, can be proved from rouche
+\end{problem}
 
 \end{document}
