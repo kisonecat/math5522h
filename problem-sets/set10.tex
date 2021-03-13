@@ -2,25 +2,142 @@
 \course{Math 5522H}
 \author{Jim Fowler}
 \input{preamble}
-
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
+\DeclareMathOperator{\Res}{Res}
 
 \begin{document}
 \maketitle
 
-\begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+\begin{inspiration} % https://frinkiac.com/caption/S01E04/240324
+  As far as anybody knows, we're a nice normal family.
+\byline{Homer Simpson in S01E04}
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  What is a \textbf{normal family} of holomorphic functions on an open set $U$?
+\end{problem}
+
+\begin{problem}
+  What does it mean to say that the infinite product
+  \(
+    \prod_{n=1}^\infty \left( 1 + a_n \right)
+  \)
+  converges?
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}
+  For which $z$ does the series
+  \[
+    \sum_{n=0}^\infty \frac{\cos \left( nz \right)}{n!}
+  \]
+  converge?
+
+  Does it converge to a holomorphic function you recognize?
+\end{problem}
+
+\begin{problem}
+  For which $z$ does the series
+  \[
+    \sum_{0 \neq n \in \Z} \left( \frac{1}{z+n} - \frac{1}{n} \right)
+  \]
+  converge?
+
+  Does it converge to a meromorphic function you recognize?
+  \textit{Hint:} \ref{residues-all-one}.
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}\label{poisson-summation}Describe conditions on $f$ so
+  that, for a suitable $\gamma_1$ and $\gamma_2$,
+  \[
+    \sum_{n=-\infty}^\infty f(n) = \int_{\gamma_1} \frac{f(z)}{e^{2\pi i z} - 1} \, dz - \int_{\gamma_2} \frac{f(z)}{e^{2\pi i z} - 1} \, dz.
+  \]
+  Then expand $1/(e^{2\pi i z} - 1)$ as a geometric series to deduce the \textbf{Poisson summation formula}
+  \[
+    \sum_{n=-\infty}^\infty f(n) = \sum_{n=-\infty}^\infty \hat{f}(n) 
+  \]
+  where $\hat{f}$ is the Fourier transform, i.e.,
+  \[
+    {\hat {f}}(\xi ) := \int _{-\infty }^{\infty} f(x) \, e^{-2\pi ix \xi} \,dx.
+  \]
+\end{problem}
+
+
+\begin{problem}\label{modularity}For $a > 0$ define
+  $\vartheta(a) = \sum_{n=-\infty}^\infty e^{-a \pi z^2}$.  Recalling
+  \ref{fourier-transform-itself} shows that if $f(z) = e^{-a \pi z^2}$
+  we can compute $\hat{f}(z)$.  Use $\hat{f}(z)$ and
+  \ref{poisson-summation} to verify
+  \[
+    \vartheta(a) = \vartheta(1/a) / \sqrt{a}.
+  \]
+\end{problem}
+
+\begin{problem}
+  Having just celebrated $\pi$-day, some computer calculations revealed
+\begin{align*}
+  \vartheta(1/(4\pi)) = \sum_{n=-\infty}^\infty e^{-n^2/4} &=
+3.544907701811032\textbf{10533931955126186}\ldots \\
+  2\sqrt{\pi} &=
+3.544907701811032\textbf{05459633496668229}\ldots
+\end{align*}
+Is my computer broken?  (For more, see \texttt{https://arxiv.org/abs/1809.10907}.)
+\end{problem}
+
+\begin{problem}
+  Define
+  \[
+    \wp(z) = \frac{1}{z^2} + \sum_{0 \neq \lambda \in \Z[i]} \left( \frac{1}{(z - \lambda)^2} - \frac{1}{\lambda^2} \right)
+  \]
+  which is \textbf{Weierstrass' elliptic function} on the square lattice.  Use \ref{sum-one-over-gaussian-integers} to verify that $\wp(z)$ converges.
+\end{problem}
+
+\begin{problem}\label{elliptic-derivative-periodic}Compute $\wp'(z)$ by differentiating term-by-term to show that $\wp'(z + \lambda) = \wp'(z)$ for $\lambda \in \Z[i]$.
+\end{problem}
+
+\begin{problem}
+  Compare $\wp(z)$ and $\wp(-z)$.  Use this to relate $\wp(1/2)$ and $\wp(-1/2)$ and to relate $\wp(i/2)$ and $\wp(-i/2)$ and with \ref{elliptic-derivative-periodic}, conclude that $\wp(z + \lambda) = \wp(z)$ for $\lambda \in \Z[i]$.
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+\begin{problem}\label{differentiating-taylor-series}If
+  $f(z) = \sum_{n=0}^\infty a_n z^n$ has radius of convergence $r$,
+  then the series
+  \[
+    g(z) = \sum_{n=1}^\infty n a_n z^{n-1} 
+  \]
+  has radius of convergence $r$ and if $|z| < r$ then $f'(z) = g(z)$.
+\end{problem}
+
+\begin{problem}\label{sum-one-over-gaussian-integers}For $n > 2$, the
+  series \( \displaystyle\sum_{0 \neq \lambda \in \Z[i]} \frac{1}{|\lambda|^n} \).
+  converges.
+\end{problem}
+
+\begin{problem}\label{elliptic-more-than-two-poles}There is no meromorphic function $f : \C \to \hat{\C}$ having simple poles at $a+bi \in \Z[i]$ and satisfying $f(z) = f(z+a+bi)$ for all $z \in \C$ and $a+bi \in \Z[i]$.
+\end{problem}
+
+\begin{problem}\label{infinite-product-sine}For all $z \in \C$, we have 
+  \(
+    \sin \left( \pi z \right) = \pi \displaystyle\prod_{n=1}^\infty \left( 1 - \frac{z^2}{n^2} \right)
+  \). % missing factor of z
+\end{problem}
+
+\begin{problem}\label{normal-family-example}Define
+  $f_w : B_1(0) \to \C$ by $f_w(z) = z/(z-w)$.  The family of
+  functions $\mathcal{F} := \{ f_w \mid w \in \C \}$ is a normal
+  family.
+\end{problem}
+
+\begin{problem}\label{derivatives-normal-then-not-normal}Suppose $\mathcal{F}$ is a family of functions defined on the domain $B_1(0)$.  If $\mathcal{F}' := \{ f' \mid f \in \mathcal{F} \}$, the
+  family consisting of derivatives of functions in the family
+  $\mathcal{F}$, is normal, then the original family $\mathcal{F}$ is
+  normal. % assume that \{ f(0) \mid f \in \mathcal{F} \} is bounded
+\end{problem}
 
 \end{document}
