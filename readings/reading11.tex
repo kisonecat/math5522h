@@ -13,17 +13,48 @@
 \begin{document}
 \maketitle
 
-% The Zeta function
+You've worked so hard this term, so it is important that you take time
+to reap what you've planted, important that we work through examples
+of the machinery we've built so carefully.
 
-From Stein and Shakarchi's \textit{Complex Analysis}, read
+Towards that end, this week is more of an ``application'' or an
+``example'' week, focused around special functions.  Our focus is
+specifically on the \textbf{Gamma function} and the \textbf{zeta
+  function.}  Remember that Gamma is written $\Gamma$ and zeta is
+written $\zeta$.  Our brief foray into these special functions will
+motivate much of what follows, e.g., having seen some significant
+examples of infinite products will motivate next week's deeper dive
+into topics like Weierstrass' factorization theorem.
+
+For this week, you could look at Palka's Section~X.2.4, which
+addresses the Gamma function.  But I think it is wiser to focus on our
+other two references.  From Stein and Shakarchi's \textit{Complex
+  Analysis}, read
 \begin{itemize}
+\item 6.1 The Gamma function  
 \item 6.2 The zeta function
 \item 6.2.1 Functional equation and analytic continuation
 \item 7.1 Zeros of the zeta function
 \item 7.1.1 Estimates
 \end{itemize}
+Note that ``analytic continuation'' appears, despite our not having
+talked about analytic continuation in general.  This is intentional:
+in learning mathematics, sometimes we start from general principles
+and consider special cases, and other times it is more natural to
+begin with a special case and then discover the general principle.
+Thus far, we've often been considering \textit{entire} functions so we
+haven't necessarily had to worry about continuation.  For the Riemann
+zeta function, the definition is given as
+\[
+  \zeta (s)=\sum_{n=1}^\infty \frac {1}{n^{s}}
+\]
+but note that this series doesn't converge everywhere; this converges
+when the real part of $s$ is bigger than one.  So to compute say
+$\zeta(0) = -1/2$, we need to find a meromorphic function agreeing
+with the above series.
 
-From Ahlfors' \textit{Complex Analysis: An Introduction to The Theory of Analytic Functions of One Complex Variable}, read
+The function $\zeta$ is also discussed in Ahlfors' textbook, in
+sections
 \begin{itemize}
 \item 5.4 The Riemann Zeta Function
 \item 5.4.1 The Product Development
@@ -31,4 +62,6 @@ From Ahlfors' \textit{Complex Analysis: An Introduction to The Theory of Analyti
 \item 5.4.3 The Functional Equation
 \item 5.4.4 The Zeros of the Zeta Function
 \end{itemize}
+
+
 \end{document}

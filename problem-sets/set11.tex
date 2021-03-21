@@ -2,25 +2,169 @@
 \course{Math 5522H}
 \author{Jim Fowler}
 \input{preamble}
+\DeclareMathOperator{\Res}{Res}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+  Wenn ich nur erst die S\"atze habe! Die Beweise werde ich schon
+  finden.\footnote{``If only I first had the theorems, then I'd find
+    the proofs somehow.''  Riemann knew all too well the challenge of
+    PODASIPs.} \byline{Bernhard Riemann}
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  When $\Real s > 0$, what is the Gamma function $\Gamma(s)$?
+\end{problem}
+
+\begin{problem}
+  When $\Real s > 1$, what is the Riemann zeta function $\zeta(s)$?
+\end{problem}
+
+\begin{problem}
+  What is the von Mangoldt function $\Lambda(n)$?
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}
+  Compute $\Res(\Gamma,s)$ for $s \in \{ 0, -1, -2, \ldots \}$.
+\end{problem}
+
+\begin{problem}Evaluate $\Res(f,s)$ for the
+  function $f(s) = \Gamma(s) \Gamma(1-s)$.
+\end{problem}
+
+\begin{problem} % be careful to get the sign right!
+  Use \ref{euler-reflection-formula} to compute $\Gamma(1/2)$.  
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  In previous courses, you have seen that
+  $\Gamma(s+1) = s \cdot \Gamma(s)$.  Use this fact to explain how to
+  define a meromorphic function on $\C$ agreeing with $\Gamma(s)$ for
+  $\Real s > 0$.  This is \textbf{analytic continuation} which succeeds
+  here by using a \textbf{functional equation}.
+\end{problem}
+
+\begin{problem}\label{start-of-reflection-formula}For $\lambda \in (0,1)$, evaluate
+  \[
+    \int_{0}^\infty \frac{u^{\lambda - 1}}{1 + u} \, du.
+  \]
+  \textit{Hint:} make the substitution $u = e^x$ and invoke \ref{integral-for-euler-reflection}.
+\end{problem}
+
+\begin{problem}\label{integrate-gamma-one-minus-s}For $s \in (0,1)$ and positive $t \in \R$, show that
+  \[
+    \Gamma(1 - s) = t \int_0^\infty (xt)^{-s} e^{-xt}\, dx.
+  \]
+\end{problem}
+
+\begin{problem}\label{euler-reflection-formula}Combine \ref{start-of-reflection-formula} and \ref{integrate-gamma-one-minus-s} to conclude that
+  \[
+    \Gamma(1-s) \, \Gamma(s) = \frac{\pi}{\sin \left( \pi s \right)}.
+  \]
+  This is \textbf{Euler's reflection formula}.
+\end{problem}
+
+\begin{problem}
+  Show that the series
+  \[\displaystyle\sum_{n=1}^\infty \displaystyle\frac {1}{n^{s}}\]
+  converges to a holomorphic function when $\Real s > 1$.
+\end{problem}
+
+\begin{problem}\label{euler-product-formula}Recall that you defined
+  \(\displaystyle\prod_{n=1}^\infty \left( 1 + a_n \right)\) in
+  \ref{terminology-infinite-product}.  Show that when $\Real s > 1$, we
+  have
+  \[
+    \frac{1}{\zeta(s)} = \displaystyle\prod_{n=1}^\infty \left( 1 - {p_n}^s \right),
+  \]
+  where $p_n$ is the $n$th prime number.
+\end{problem}
+
+\begin{problem}
+  Use \ref{euler-product-formula} and \ref{nonzero-infinite-product}
+  to show that if $\Real s > 1$ then $\zeta(s) \neq 0$.
+\end{problem}
+
+\begin{problem}
+  Use \ref{euler-product-formula} to show that
+  \[
+    \Real \left( \frac{ \zeta'(a+bi) }{ \zeta(a+bi) } \right) = - \sum_{n=1}^\infty \frac{\Lambda(n) \, \cos \left( b \log n \right)}{n^{a}}.
+  \]
+\end{problem}
+
+\begin{problem}
+  Use the trigonometric fact $3 + 4 \cos \theta + \cos (2\theta) \geq 0$ to show that
+  \[
+    \Real \left( 3 \frac{ \zeta'(a) }{ \zeta(a) } + 4 \frac{ \zeta'(a+bi) }{ \zeta(a+bi) } +  \frac{ \zeta'(a+2bi) }{ \zeta(a+2bi) } \right) \leq 0.
+  \]
+  Knowing $\zeta$ has a simple pole at $s = 1$ and assuming
+  $\zeta(1+bi) = 0$ for $b \in \R$, define 
+  \[
+    f(a) = \zeta(a)^3 \cdot \zeta(a+bi)^4 \cdot \zeta(a + 2bi)
+  \]
+  and study $f$ near $a = 1$ to uncover a contradiction.  You will
+  have shown that $\zeta(s) \neq 0$ when $\Real s = 1$.
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
 
+\begin{problem}\label{nonzero-infinite-product}For a sequence $a_n \neq 0$ of complex numbers, suppose
+  $\displaystyle\sum_{n=1}^\infty |a_n|$ converges.  Then
+  $\displaystyle\prod_{n=1}^\infty \left( 1 + a_n \right)$ converges
+  to a nonzero quantity.
+\end{problem}
+
+\begin{problem} % missing pole at s = 1
+  Define the \textbf{Dirichlet eta function} via
+  \[
+    \eta(s) = := \sum_{n=1}^\infty \frac{(-1)^n}{n^s}.
+  \]
+  This series converges to an analytic function when $\Real s > 0$.
+\end{problem}
+
+\begin{problem}
+  The Riemann zeta and Dirichlet eta functions are related via
+  \[
+    \left( 1 - 2^{1-s} \right) \zeta(s) = \eta(s).
+  \]
+\end{problem}
+
 \end{document}
+
+%vc
+%proof of picard's theorem
+
+
+
+%prove liouville via singularities for analytic functions: f(1/z)  extends holomorphically around zero, it is easy to observe that f achieves its supremum, either on C, or ``at infinity'' (meaning that the extension of f(1/z) achieves a local supremum at 0). \in either case, f has to be constant
+
+
+
+%proof of fundamental theorem of algebra via max modulus
+
+%https://en.wikipedia.org/wiki/Abel%E2%80%93Plana_formula
+
+% Stieltjes inversion formula t
+
+% can cts functions on the disk be uniformly approximated by an element $\C[z]$?
+
+% suppose $|f(z) - 1| < 1$ \in a region $\Omega$, show int f' / dz = 0
+% suppose $|f(z) - 1| < f(z) + 1$ \in a region $\Omega$, show int f' / dz = 0
+
+% https://en.wikipedia.org/wiki/Jordan%27s_lemma
+
+% fourier series, for holomorphic functions \in the disk, the coefficientgs are positive
+% parseval's theorem
+
+% injective entire functions are affine; apply casorati-weierstrass to f(1/z)
