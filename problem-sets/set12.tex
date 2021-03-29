@@ -3,24 +3,76 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+What kind of metabolism do they have? What's their \textbf{growth rate?}
+\byline{the fictional Dr. Alan Grant in \textit{Jurassic Park}, a well-known movie about complex dynamics}
 \end{inspiration}
+
+\textbf{This is a short week with an instructional break, so this
+  problem set is shorter.}
 
 \section{Terminology}
 
+\begin{problem}
+  What does it mean to say that an entire function is of
+  \textbf{finite order}?
+\end{problem}
+
+\begin{problem}
+  What are \textbf{canonical factors}?
+\end{problem}
+
 \section{Numericals}
+
+\begin{problem}
+  Compute $\displaystyle\prod_{n=0}^\infty \left( 1 + z^{(2^n)} \right)$.
+\end{problem}
+
+\begin{problem}
+  Compute $\displaystyle\prod_{n=1}^\infty \left( 1 - \frac{1}{(2n)^2} \right)$.
+\end{problem}
+
+\begin{problem}
+  What is the order of growth of $f(z) = \sin z$?
+\end{problem}
+
+\begin{problem}
+  What is the order of growth of a polynomial?
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  Suppose $f : \C \to \C \setminus \{0, 1\}$ is a holomorphic function
+  of finite order.  What does Hadamard say about $f$ in this case?
+\end{problem}
+
+\begin{problem}
+  Consider the function
+  \[
+    G(z) = z \prod_{n=1}^\infty \left( 1 + \frac{z}{n} \right) e^{-z/n}
+  \]
+  which has zeros at nonpositive integers, just like the function
+  $z \mapsto 1/\Gamma(z)$ we saw last week.
+
+  Is it the case that $1/\Gamma(z) = G(z)$?
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+\begin{problem}
+  A meromorphic function on the complex plane is the quotient of two
+  entire functions.
+\end{problem}
+
+\begin{problem}
+  If $f : \C \to \C$ is a odd function of order 1 with $f(n) = 0$ for
+  $n \in \Z$, then $f(z) = \sin (\pi z)$.
+\end{problem}
+
+
 
 \end{document}
