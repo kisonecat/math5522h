@@ -2,25 +2,174 @@
 \course{Math 5522H}
 \author{Jim Fowler}
 \input{preamble}
+\DeclareMathOperator{\Res}{Res}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
+\usepackage[symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 \begin{document}
 \maketitle
 
+% https://www.maths.tcd.ie/pub/HistMath/People/Riemann/Grund/Grund.pdf
+% page 37
 \begin{inspiration}
-In mathematics, existence is freedom from contradiction.
-\byline{David Hilbert}
+  Zwei gegebene einfach zusammenh\"angende ebene Fl\"achen k\"onnen
+  stets so auf einander bezogen werden, dass jedem Punkte der einen
+  Ein mit ihm stetig fortr\"uckender Punkt der anderen entspricht und
+  ihre entsprechenden kleinsten Theile \"ahnlich sind; und zwar kann
+  zu Einem innern Punkte und zu Einem Begrenzungspunkte der
+  entsprechende beliebig gegeben werden; dadurch aber ist f\"ur all
+  Punkte die Beziehung bestimmt.\footnote{``Two given simply-connected
+    plane Surfaces can always be related to each other, so that each
+    Point in the One with a continuously advancing Point corresponds
+    to the other and their corresponding smallest Parts are similar
+    [meaning the map is conformal?]; and namely, the correspondence
+    between Inner Points and Limit Points can be given arbitrarily;
+    but because of that the Relationship for all Points is
+    determined.''}  \byline{Bernhard Riemann, in his 1851 PhD thesis
+    \textit{Grundlagen f\"ur eine allgemeine Theorie der Functionen
+      einer ver\"anderlichen complexen Gr\"osse.}}
 \end{inspiration}
 
 \section{Terminology}
 
+\begin{problem}
+  What is a \textbf{conformal map}?  Recall
+  \ref{holomorphic-is-conformal} and note that various people define
+  ``conformal map'' differently.
+\end{problem}
+
+\begin{problem}
+  What is a \textbf{conformal equivalence} between two open subsets of $\C$?
+\end{problem}
+
+\begin{problem}
+  How does the cross-ratio extend to $\hat{\C} = \C \cup \{\infty\}$?
+  Recall \ref{cross-ratio}.
+\end{problem}
+
 \section{Numericals}
+
+Feel free to express your
+biholomorphisms as the composition of other maps.
+
+\begin{problem}
+  Consider the sector \(S_\theta := \{ z \in \C : 0 < |z| < 1 \mbox{ and } 0 < \Arg z < \theta \}\). Describe a biholomorphic map between $S_\theta$ and $S_\pi$.
+\end{problem}
+
+\begin{problem}
+  Consider the half-disk
+  \[
+    D := \{ x + iy \in \C : x, y \in \R \mbox{ and } x^2+y^2 < 1 \mbox{ and } x > 0 \}
+  \]
+  and the first quadrant
+  \[
+    Q := \{ x + iy \in \C : x, y \in \R \mbox{ and } x > 0 \mbox{ and } y > 0 \}.
+  \]
+  Describe a biholomorphic map between $D$ and $Q$.
+\end{problem}
+
+\begin{problem}
+  Again consider the half-disk $D$. Describe a biholomorphic map between $D$ and $B_1(0)$.
+\end{problem}
+
+\begin{problem}
+  Consider the infinite horizontal strip
+  \[
+    S := \{ x + iy \in \C : x, y \in \R \mbox{ and } |y| < 1 \}.
+  \]
+  Describe a biholomorphic map between $S$ and $B_1(0)$.  
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}
+  There are 24 permutations of four distinct objects, and sometimes
+  permuting the four inputs to the cross-ratio results in a different
+  output.  Using the same four inputs, how many different outputs of
+  the cross-ratio are possible?  How are these outputs related to each
+  other?  There is a group structure here, giving rise to the
+  \textbf{anharmonic group}.
+\end{problem}
+
+\begin{problem}\label{entire-injective-is-affine}A nonconstant entire function
+  $f : \C \to \C$ is \textit{affine} if there are constants
+  $a \in \C \setminus \{0\}$ and $b \in \C$ so that $f(z) = az + b$.
+  
+  Show that injective entire functions are affine.  \textit{Hint:}
+  apply Casorati-Weierstrass to $z \mapsto f(1/z)$.
+\end{problem}
+
+\begin{problem}
+  Using \ref{entire-injective-is-affine} and
+  \ref{automorphisms-of-disk} and some dimension counting, conclude
+  there is no biholomorphism between the unit ball $B_1(0)$ and the
+  plane $\C$.  (Of course, this is \textit{much easier} to see via
+  Liouville!)
+\end{problem}
+
+\begin{problem}
+  Define \(B_{r,R}(0) := \{ z \in \C : r < |z| < R \}\). 
+  Suppose $0 < r < R$.  Is there a biholomorphism between the
+  punctured disk $B_{0,R}(0)$ and the annulus $B_{r,R}(0)$?
+
+  You might say that the annulus is ``doubly-connected'' so we are
+  exploring the extent to which something like the Riemann mapping
+  theorem holds for regions a bit more complicated than
+  simply-connected domains.
+\end{problem}
+
+\begin{problem}
+  Is there a biholomorphism between the annulus $B_{r,R}(0)$ and the
+  annulus $B_{\lambda r, \lambda R}(0)$?
+\end{problem}
+
+\begin{problem}
+  Is there a biholomorphism between the annulus $B_{r,R}(0)$ and the
+  annulus $B_{1/R,1/r}(0)$?
+\end{problem}
+
+\begin{problem}\label{annulus-to-punctured-disk}Suppose $r > 1$ and $R > 1$ and that there is a biholomorphism
+  $f : B_{1,r}(0) \to B_{1,R}(0)$ sending the inside boundary to the
+  inside boundary, i.e., for a sequence
+  $z_1, z_2, \ldots \in B_{1,r}(0)$ with $\lim_n |z_n| = 1$, we have
+  $\lim_n |f(z_n)| = 1$.
+  
+  Repeatdly reflect across the boundary to produce a biholomorphism
+  $F : \C \setminus \{0\} \to \C \setminus \{0\}$ extending $f$.
+
+  \textit{A technical point:} the Schwarz reflection principle, as we
+  have stated it, requires $f$ to extend continuously to the boundary.
+  This issue can be overcome here.
+\end{problem}
+
+\begin{problem}
+  The function $F$ constructed in \ref{annulus-to-punctured-disk}
+  extends to an entire function, which by
+  \ref{entire-injective-is-affine} is affine.  Deduce
+  \textbf{Schottky's theorem for annuli} describing exactly when
+  annuli $B_{r,R}(0)$ and $B_{r',R'}(0)$ and are conformally
+  equivalent.
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
 
+\begin{problem}
+  A map $f : \C \to \C$ is conformal if and only if it is holomorphic.
+\end{problem}
+
+\begin{problem}
+  For triples $z_1, z_2, z_3 \in \C$ and $w_1,w_2,w_3 \in \C$, there
+  is a conformal map $f : \C \to \C$ with $f(z_1) = w_1$ and
+  $f(z_2) = w_2$ and $f(z_3) = w_3$. % many issues!
+\end{problem}
+
+\begin{problem}
+  If there is a biholomorphism $f : U \to V$ and $U$ is
+  simply-connected, then $V$ is simply-connected.
+\end{problem}
+
+
 \end{document}
+
+
