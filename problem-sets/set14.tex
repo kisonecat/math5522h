@@ -3,10 +3,6 @@
 \author{Jim Fowler}
 \input{preamble}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{Draft}
-\SetWatermarkScale{5}
-
 \begin{document}
 \maketitle
 
@@ -17,10 +13,122 @@ In mathematics, existence is freedom from contradiction.
 
 \section{Terminology}
 
-\section{Numericals}
+\begin{problem}
+  What is the \textbf{Schwarz-Christoffel integral}?
+
+  Be careful to discuss the choice of branches in the terms appearing
+  in the integrand.
+\end{problem}
+
+\begin{problem}
+  What is an elliptic integral?
+\end{problem}
+
+\begin{problem}
+  What is the incomplete elliptic integral of the first kind?
+
+  This integral is usually denoted by $F$, but confusingly the input
+  to $F$ is sometimes called the ``parameter'' and other times called
+  the ``modular angle'' and \textit{these are different}!
+\end{problem}
+
+\section{Computation}
+
+\begin{problem}
+  Find all solutions to
+  \[
+    \frac{1}{x} + \frac{1}{y} + \frac{1}{z} = 1
+  \]
+  for integers $x,y,z \in \Z$.
+\end{problem}
+
+\begin{problem}
+  For $w$ in the upper half-plane, consider
+  \[
+    f(w) = \int_0^w  \frac{dz}{\sqrt{1-z^2}}
+  \]
+  where $\sqrt{1-z^2}$ is holomorphic in the upper half-plane and positive when $w \in (-1,1)$.
+
+  The function $f$ provides a conformal map from the upper half-plane to what region?
+
+  What is a well-known name for the function $f$?
+\end{problem}
+
+\begin{problem}
+  Consider the function
+  \[
+    f(w) = \int_0^w  \frac{dz}{\sqrt{z} \sqrt{z+1} \sqrt{z-1}}
+  \]
+  which maps the upper half-plane to a square (after making appropriate branch cuts!).
+
+  What is the side length of the square?
+
+  \textit{Warning:} Your answer may still involve an integral.
+\end{problem}
+
+\begin{problem}
+  Describe a biholomorphic map between the unit disk and the interior
+  of an $n$-gon.
+\end{problem}
 
 \section{Exploration}
 
+\begin{problem}  
+  When can a holomorphic map $f : B_1(0) \to B_1(0)$ have more than two fixed points?
+\end{problem}
+
+\begin{problem}
+  Can a holomorphic map $f : \C to \C$ which isn't the identity have
+  more than two fixed points?
+\end{problem}
+
+\begin{problem}
+  Does every holomorphic function $f : B_1(0) \to B_1(0)$ have a fixed point?
+\end{problem}
+
+\begin{problem}
+  For angles $\alpha, \beta, \gamma \in (0,2\pi)$ with $\alpha + \beta + \gamma = \pi$, the function
+  \[
+    f(z) = \int_0^z \frac{dw}{(w-A)^{1-\alpha/\pi} (w-B)^{1-\beta/\pi}}
+  \]
+  maps the upper half-plane to a triangle, and extends to a map $f : H \to T$ where $H$ is the closed half-space
+  \[
+    H = \{ x + iy \in \C : x, y \in \R \mbox{ and } y \geq 0 \},
+  \]
+  and $T$ is the (closed) triangle.
+
+  Where does $f$ send the real line?
+\end{problem}
+
+\begin{problem}
+  A M\"obius transformation $g(z) = (az + b)/(cz + d)$ with
+  $a,b,c,d \in \R$ sends $H$ to itself.  Consider the composition
+  \[
+    f^{-1} \circ g \circ f : T \to T
+  \]
+  to describe a map from $T$ to itself, conformal on the interior of
+  $T$, which permutes the vertices of $T$.
+\end{problem}
+
 \section{Prove or Disprove and Salvage if Possible}
+
+\begin{problem}
+  A polygon's angles determine the polygon up to similarity.
+\end{problem}
+
+\begin{problem}
+  Suppose $f : B_{1+\epsilon}(0) \to \C$ and if $|z| \leq 1$ then
+  $|f(z)| \leq 1$.  Then $f$ has a fixed point in the unit disk
+  $B_1(0)$.
+\end{problem}
+
+\begin{problem}
+  There exists a surjective holomorphic function
+  $f : B_1(0) \to B_1(0)$ which is not injective.
+\end{problem}
+
+\begin{problem}
+  There exists a surjective holomorphic function $f : B_1(0) \to \C$.
+\end{problem}
 
 \end{document}
